@@ -12,6 +12,4 @@ Um sistema de combate no estilo RPG em Java
 [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/EnzoGuimaraesBevilaqua) 
 ### Antônio Lucas
 
-[![Github]
-(https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)]
-(https://github.com/Tony38700)
+[![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Tony38700)
