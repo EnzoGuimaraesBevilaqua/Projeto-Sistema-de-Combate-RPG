@@ -8,6 +8,7 @@ public class Jogador {
     private int constituicaoDoJogador = 0;
     private int agilidadeDoJogador = 0;
     private int destrezaDoJogador = 0;
+    private int VidaMaximaDoJogador = 0;
     
     public void setNomeDoJogador(String nomeDoJogador)
     {
@@ -18,7 +19,17 @@ public class Jogador {
     {
         return this.nomeDoJogador;
     }
+
+    public void setVidaMaximaDoJogador(int VidaMaximaDoJogador)
+    {
+        this.VidaMaximaDoJogador = VidaMaximaDoJogador;
+    }
     
+    public int getVidaMaximaDoJogador()
+    {
+        return this.VidaMaximaDoJogador;
+    }
+  
     public void setPontosDeVidaDoJogador(int pontosDeVidaDoJogador)
     {
         this.pontosDeVidaDoJogador = pontosDeVidaDoJogador;
