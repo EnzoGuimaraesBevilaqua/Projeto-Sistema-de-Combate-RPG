@@ -28,7 +28,7 @@ public class Adversario {
         return this.pontosDeVidaDoAdversario;
     }
     
-    public void setdanoDoAdversario(int danoDoAdversario)
+    public void setDanoDoAdversario(int danoDoAdversario)
     {
         this.danoDoAdversario = danoDoAdversario;
     }
