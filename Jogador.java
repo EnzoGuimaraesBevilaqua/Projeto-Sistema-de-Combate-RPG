@@ -1,5 +1,5 @@
 package SistemaDeCombate;
-
+//estou digitando
 public class Jogador {
     
     private String nomeDoJogador;
