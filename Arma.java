@@ -2,24 +2,28 @@ package SistemaDeCombate;
 
 public class Arma {
     
-    String categoria;
-    int constanteDeDano;
+    String categoriaDaArma;
+    int constanteDeDano = 10;
     
-    public void setCategoria(int categoria)
+    public void setCategoriaDaArma(int categoriaDaArma)
     {
-        if(categoria == 1)
+        if(categoriaDaArma == 1)
         {
-            this.categoria = "Arma leve";
+            this.categoriaDaArma = "Leve";
         }
-        else if(categoria == 2)
+        else if(categoriaDaArma == 2)
         {
-            this.categoria = "Arma pesada";
+            this.categoriaDaArma = "Leve";
+        }
+        else if(categoriaDaArma == 3)
+        {
+            this.categoriaDaArma = "Pesada";
         }
     }
     
-    public String getCategoria()
+    public String getCategoriaDaArma()
     {
-        return this.categoria;
+        return this.categoriaDaArma;
     }
     
     public void setConstanteDeDano(int constanteDeDano)
