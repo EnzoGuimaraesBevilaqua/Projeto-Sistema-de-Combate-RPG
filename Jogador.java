@@ -4,8 +4,8 @@ public class Jogador {
     
     private String nomeDoJogador;
     private int pontosDeVidaDoJogador = 0;
-    private int forcaDoJogador = 0;
-    private int constituicaoDoJogador = 0;
+    private double forcaDoJogador = 0;
+    private double constituicaoDoJogador = 0;
     private int agilidadeDoJogador = 0;
     private int destrezaDoJogador = 0;
     private int VidaMaximaDoJogador = 0;
@@ -40,22 +40,22 @@ public class Jogador {
         return this.pontosDeVidaDoJogador;
     }
     
-    public void setForcaDoJogador(int forcaDoJogador)
+    public void setForcaDoJogador(double forcaDoJogador)
     {
         this.forcaDoJogador = forcaDoJogador;
     }
     
-    public int getForcaDoJogador()
+    public double getForcaDoJogador()
     {
         return this.forcaDoJogador;
     }
     
-    public void setConstituicaoDoJogador(int constituicaoDoJogador)
+    public void setConstituicaoDoJogador(double constituicaoDoJogador)
     {
         this.constituicaoDoJogador = constituicaoDoJogador;
     }
     
-    public int getConstituicaoDoJogador()
+    public double getConstituicaoDoJogador()
     {
         return this.constituicaoDoJogador;
     }
