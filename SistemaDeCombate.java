@@ -91,9 +91,9 @@ public class SistemaDeCombate {
         arma1.setCategoriaDaArma(1);
         arma1.setConstanteDeDano(1);
         
-        arma2.setNomeDaArma("Adaga (Leve)");
+        arma2.setNomeDaArma("Katana (Leve)");
         arma2.setCategoriaDaArma(1);
-        arma2.setConstanteDeDano(3);
+        arma2.setConstanteDeDano(5);
         
         arma3.setNomeDaArma("Espada Longa (Pesada)");
         arma3.setCategoriaDaArma(2);
@@ -140,6 +140,11 @@ public class SistemaDeCombate {
             {
                 System.out.printf("\nInsira seu nome: ");
                 nomeDoJogador = input.next();
+                
+                if(nomeDoJogador.length() > 7)
+                {
+                    continue;
+                }
                 jogador.setNomeDoJogador(nomeDoJogador);
                 System.out.println("Bem vindo, " + jogador.getNomeDoJogador());
 
@@ -259,15 +264,32 @@ public class SistemaDeCombate {
         
         while(true) //while do combate###########################################################################
         {
-            System.out.println("\n&  " + adversarioGenerico.getNomeDoAdiversario());
-            System.out.printf("%d      %d\n\n", jogador.getPontosDeVidaDoJogador(), adversarioGenerico.getPontosDeVidaDoAdiversario());
+            System.out.println("\n" + adversarioGenerico.getNomeDoAdiversario() + "\n" + adversarioGenerico.getPontosDeVidaDoAdiversario());
+            System.out.println("\n" + jogador.getNomeDoJogador() + "\n" + jogador.getPontosDeVidaDoJogador() + "\n");
             System.out.println("Pocoes do jogador: " + pocoesDoJogador.getQuantidadeDePocoes());
             System.out.println("Pocoes do adversario: " + pocoesDoAdversario.getQuantidadeDePocoes());
-            System.out.println("Armadura do jogador: " + armadura.getValorDeArmadura());
+            System.out.printf("Armadura do jogador: %.0f\n", armadura.getValorDeArmadura());
             System.out.println("Armadura do adversario: " + adversarioGenerico.getDefesaDoAdversario());
             System.out.println("1- Atacar  2- Defender  3- Usar pocao");
             escolhaDeAcaoDoJogador = input.nextInt();
+            
+            if(escolhaDeAcaoDoJogador == 4)
+            {
+                System.out.println("\nCheat de aumentar vida");
+                vida = jogador.getVidaMaximaDoJogador();
+                jogador.setPontosDeVidaDoJogador(vida);
+            }
+            else if(escolhaDeAcaoDoJogador == 5)
+            {
+                System.out.println("\nCheat de vencer combate");
+                return 1;
                     
+            }
+            else if(escolhaDeAcaoDoJogador == 6)
+            {
+                System.out.println("\nSaindo...\n");
+                break;
+            }
             if(jogador.getAgilidadeDoJogador() > adversarioGenerico.getAgilidadeDoAdiversario()) //teste
             {
                 armadura.setValorDeArmadura(armaduraMaximaDoJogador);
@@ -275,7 +297,7 @@ public class SistemaDeCombate {
                 {
                     if(arma.getCategoriaDaArma() == 1)
                     {
-                        dano = (int) (arma.getConstanteDeDano() + gerador.nextInt(6) + 1 + gerador.nextInt(6) + 1 + gerador.nextInt(4) + 1 + jogador.getDestrezaDoJogador() - adversarioGenerico.getDefesaDoAdversario());
+                        dano = (int) (arma.getConstanteDeDano() + gerador.nextInt(8) + 1 + gerador.nextInt(8) + 1 + gerador.nextInt(6) + 1 + jogador.getDestrezaDoJogador() - adversarioGenerico.getDefesaDoAdversario());
                     }
                     else
                     {
@@ -289,7 +311,7 @@ public class SistemaDeCombate {
                             
                     vida -= dano;
                     adversarioGenerico.setPontosDeVidaDoAdiversario(vida);
-                    System.out.println("Dano: " + dano);
+                    System.out.println("\nDano: " + dano);
                             
                     if(adversarioGenerico.getPontosDeVidaDoAdiversario() <= 0)
                     {
@@ -321,30 +343,13 @@ public class SistemaDeCombate {
                         }
                     }
                 }
-                else if(escolhaDeAcaoDoJogador == 4)
-                {
-                    System.out.println("\nCheat de aumentar vida");
-                    vida = jogador.getVidaMaximaDoJogador();
-                    jogador.setPontosDeVidaDoJogador(vida);
-                }
-                else if(escolhaDeAcaoDoJogador == 5)
-                {
-                    System.out.println("\nCheat de vencer combate");
-                    return 1;
-                    
-                }
-                else if(escolhaDeAcaoDoJogador == 6)
-                {
-                    System.out.println("\nSaindo...\n");
-                    break;
-                }
                         
                 escolhaDeAcaoDoAdversario = gerador.nextInt(6);
                        
                 adversarioGenerico.setDefesaDoAdversario(defesaMaximaDoAdversario);
                 if(escolhaDeAcaoDoAdversario == 0 || escolhaDeAcaoDoAdversario == 1 || escolhaDeAcaoDoAdversario == 2)
                 {
-                    System.out.println("\nAdversario: ataque\n");
+                    System.out.println("\nAdversario: ataque");
                             
                     dano = (int) (adversarioGenerico.getDanoDoAdversario() - armadura.getValorDeArmadura());
                     if(dano <= 0)
@@ -364,13 +369,13 @@ public class SistemaDeCombate {
                 }
                 else if(escolhaDeAcaoDoAdversario == 3 || escolhaDeAcaoDoAdversario == 4)
                 {
-                    System.out.println("\nAdversario: defesa\n");
+                    System.out.println("\nAdversario: defesa");
                             
                     adversarioGenerico.setDefesaDoAdversario(2*adversarioGenerico.getDefesaDoAdversario());
                 }
                 else if(escolhaDeAcaoDoAdversario == 5)
                 {
-                    System.out.println("\nAdversario: pocao\n");
+                    System.out.println("\nAdversario: pocao");
                             
                     if(pocoesDoAdversario.getQuantidadeDePocoes() >= 1)
                     {
@@ -398,7 +403,7 @@ public class SistemaDeCombate {
                 adversarioGenerico.setDefesaDoAdversario(defesaMaximaDoAdversario);
                 if(escolhaDeAcaoDoAdversario == 0 || escolhaDeAcaoDoAdversario == 1 || escolhaDeAcaoDoAdversario == 2)
                 {
-                    System.out.println("\nAdversario: ataque\n");
+                    System.out.println("\nAdversario: ataque");
                             
                     dano = (int) (adversarioGenerico.getDanoDoAdversario() - armadura.getValorDeArmadura());
                     if(dano <= 0)
@@ -418,13 +423,13 @@ public class SistemaDeCombate {
                 }
                 else if(escolhaDeAcaoDoAdversario == 3 || escolhaDeAcaoDoAdversario == 4)
                 {
-                    System.out.println("\nAdversario: defesa\n");
+                    System.out.println("\nAdversario: defesa");
                             
                     adversarioGenerico.setDefesaDoAdversario(2*adversarioGenerico.getDefesaDoAdversario());
                 }
                 else if(escolhaDeAcaoDoAdversario == 5)
                 {
-                    System.out.println("\nAdversario: pocao\n");
+                    System.out.println("\nAdversario: pocao");
                             
                     if(pocoesDoAdversario.getQuantidadeDePocoes() >= 1)
                     {
@@ -463,7 +468,7 @@ public class SistemaDeCombate {
                             
                     vida -= dano;
                     adversarioGenerico.setPontosDeVidaDoAdiversario(vida);
-                    System.out.println("Dano: " + dano);
+                    System.out.println("\nDano: " + dano);
                             
                     if(adversarioGenerico.getPontosDeVidaDoAdiversario() <= 0)
                     {
@@ -494,22 +499,6 @@ public class SistemaDeCombate {
                             jogador.setPontosDeVidaDoJogador(jogador.getVidaMaximaDoJogador());
                         }
                     }
-                }
-                else if(escolhaDeAcaoDoJogador == 4)
-                {
-                    System.out.println("\nCheat de aumentar vida");
-                    vida = jogador.getVidaMaximaDoJogador();
-                    jogador.setPontosDeVidaDoJogador(vida);
-                }
-                else if(escolhaDeAcaoDoJogador == 5)
-                {
-                    System.out.println("\nCheat de vencer combate");
-                    return 1;
-                }
-                else if(escolhaDeAcaoDoJogador == 6)
-                {
-                    System.out.println("\nSaindo...\n");
-                    break;
                 }
                         
             } //if-else agilidade
@@ -600,8 +589,8 @@ public class SistemaDeCombate {
         jogador.setVidaMaximaDoJogador(vida);
                 
         System.out.println("\nPontos de vida: " + jogador.getVidaMaximaDoJogador());
-        System.out.println("Forca: " + jogador.getForcaDoJogador());
-        System.out.println("Constituicao: " + jogador.getConstituicaoDoJogador());
+        System.out.printf("Forca: %.0f\n", jogador.getForcaDoJogador());
+        System.out.printf("Constituicao: %.0f\n", jogador.getConstituicaoDoJogador());
         System.out.println("Agilidade: " + jogador.getAgilidadeDoJogador());
         System.out.println("Destreza: " + jogador.getDestrezaDoJogador());
         System.out.println("Pocao: 3");
@@ -614,26 +603,33 @@ public class SistemaDeCombate {
         int escolhaDeArma;
         
         System.out.println("\nEscolha uma arma\n");
-        System.out.println("1-" + armaGenerica1.getNomeDaArma() + " 2-" + armaGenerica2.getNomeDaArma() + "3-" + armaGenerica3.getNomeDaArma());
+        System.out.println("1-" + armaGenerica1.getNomeDaArma() + " 2-" + armaGenerica2.getNomeDaArma() + " 3-" + armaGenerica3.getNomeDaArma());
         escolhaDeArma = input.nextInt();
         
         if(escolhaDeArma == 1)
         {
-            System.out.println("\nEspada de Madeira selecionada\n");
             armaDoJogador.setNomeDaArma(armaGenerica1.getNomeDaArma());
+            if(armaDoJogador.getNomeDaArma() == "Espada de Madeira (Leve)")
+            {
+                System.out.println("\nVoce tem coragem");
+            }
+            else
+            {
+                System.out.println("\n" + armaGenerica1.getNomeDaArma() + " selecionada.");
+            }    
             armaDoJogador.setCategoriaDaArma(armaGenerica1.getCategoriaDaArma());
             armaDoJogador.setConstanteDeDano(armaGenerica1.getConstanteDeDano());
         }
         else if(escolhaDeArma == 2)
         {
-            System.out.println("\nAdaga selecionada\n");
+            System.out.println("\n" + armaGenerica2.getNomeDaArma() + " selecionada.");
             armaDoJogador.setNomeDaArma(armaGenerica2.getNomeDaArma());
             armaDoJogador.setCategoriaDaArma(armaGenerica2.getCategoriaDaArma());
             armaDoJogador.setConstanteDeDano(armaGenerica2.getConstanteDeDano());
         }
         else if(escolhaDeArma == 3)
         {
-            System.out.println("\nEspada longa selecionada\n");
+            System.out.println("\n" + armaGenerica3.getNomeDaArma() + " selecionada.");
             armaDoJogador.setNomeDaArma(armaGenerica3.getNomeDaArma());
             armaDoJogador.setCategoriaDaArma(armaGenerica3.getCategoriaDaArma());
             armaDoJogador.setConstanteDeDano(armaGenerica3.getConstanteDeDano());
@@ -646,25 +642,32 @@ public class SistemaDeCombate {
         
         int escolhaDeArmadura;
         
-        System.out.println("Escolha uma armadura\n");
-        System.out.println("1-" + armaduraGenerica1.getNomeDaArmadura() + " 2-" + armaduraGenerica2.getNomeDaArmadura() + "3-" + armaduraGenerica3.getNomeDaArmadura());
+        System.out.println("\nEscolha uma armadura\n");
+        System.out.println("1-" + armaduraGenerica1.getNomeDaArmadura() + " 2-" + armaduraGenerica2.getNomeDaArmadura() + " 3-" + armaduraGenerica3.getNomeDaArmadura());
         escolhaDeArmadura = input.nextInt();
         
         if(escolhaDeArmadura == 1)
         {
-            System.out.println("\nSem armadura?");
             armaduraDoJogador.setNomeDaArmadura(armaduraGenerica1.getNomeDaArmadura());
+            if(armaduraDoJogador.getNomeDaArmadura() == "Sem Armadura")
+            {
+                System.out.println("\nSem Armadura?");
+            }
+            else
+            {
+                System.out.println("\n" + armaduraGenerica1.getNomeDaArmadura() + " selecionada.");
+            }    
             armaduraDoJogador.setConstanteDeDefesa(armaduraGenerica1.getConstanteDeDefesa());
         }
         else if(escolhaDeArmadura == 2)
         {
-            System.out.println("\nArmadura de couro selecionada");
+            System.out.println("\n" + armaduraGenerica2.getNomeDaArmadura() + " selecionada.");
             armaduraDoJogador.setNomeDaArmadura(armaduraGenerica2.getNomeDaArmadura());
             armaduraDoJogador.setConstanteDeDefesa(armaduraGenerica2.getConstanteDeDefesa());
         }
         else if(escolhaDeArmadura == 3)
         {
-            System.out.println("\nArmadura de malha selecionada");
+            System.out.println("\n" + armaduraGenerica3.getNomeDaArmadura() + " selecionada.");
             armaduraDoJogador.setNomeDaArmadura(armaduraGenerica3.getNomeDaArmadura());
             armaduraDoJogador.setConstanteDeDefesa(armaduraGenerica3.getConstanteDeDefesa());
         }
