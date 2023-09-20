@@ -9,7 +9,6 @@ public class Adversario {
     private int defesaDoAdversario = 0;
     private double agilidadeDoAdversario = 0;
     
-    
     public void setNomeDoAdiversario(String nomeDoAdiversario)
     {
         this.nomeDoAdversario = nomeDoAdiversario;
