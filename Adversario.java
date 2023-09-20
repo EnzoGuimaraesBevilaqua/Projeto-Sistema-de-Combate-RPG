@@ -4,9 +4,11 @@ public class Adversario {
     
     private String nomeDoAdversario;
     private int pontosDeVidaDoAdversario = 0;
+    private int VidaMaximaDoAdversario;
     private int danoDoAdversario = 0;
     private int defesaDoAdversario = 0;
-    private int agilidadeDoAdversario = 0;
+    private double agilidadeDoAdversario = 0;
+    
     
     public void setNomeDoAdiversario(String nomeDoAdiversario)
     {
@@ -26,6 +28,16 @@ public class Adversario {
     public int getPontosDeVidaDoAdiversario()
     {
         return this.pontosDeVidaDoAdversario;
+    }
+    
+    public void setVidaMaximaDoAdversario(int VidaMaximaDoAdversario)
+    {
+        this.VidaMaximaDoAdversario = VidaMaximaDoAdversario;
+    }
+    
+    public int getVidaMaximaDoAdversario()
+    {
+        return VidaMaximaDoAdversario;
     }
     
     public void setDanoDoAdversario(int danoDoAdversario)
@@ -48,12 +60,12 @@ public class Adversario {
         return this.defesaDoAdversario;
     }
     
-    public void setAgilidadeDoAdiversario(int agilidadeDoAdiversario)
+    public void setAgilidadeDoAdiversario(double agilidadeDoAdiversario)
     {
         this.agilidadeDoAdversario = agilidadeDoAdiversario;
     }
     
-    public int getAgilidadeDoAdiversario()
+    public double getAgilidadeDoAdiversario()
     {
         return this.agilidadeDoAdversario;
     }
