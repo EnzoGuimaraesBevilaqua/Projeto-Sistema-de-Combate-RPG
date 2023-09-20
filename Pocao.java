@@ -1,8 +1,12 @@
 package SistemaDeCombate;
 
+import java.util.Random;
+
 public class Pocao {
     
-	  private int quantidadeDePocoes;
+    Random gerador = new Random();
+    
+    private int quantidadeDePocoes;
     private int cura;
     
     public void setQuantidadeDePocoes(int quantidadeDePocoes)
@@ -14,10 +18,11 @@ public class Pocao {
     {
         return this.quantidadeDePocoes;
     }
-
-    public getCura()
+    
+    public int getCura()
     {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++)
+        {
             cura += gerador.nextInt(6) + 1;
         }
         return cura;
