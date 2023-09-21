@@ -81,7 +81,7 @@ public class SistemaDeCombate {
         adversario5.setAgilidadeDoAdiversario(8.5);
         
         adversario6.setNomeDoAdiversario("Kalameet");
-        adversario6.setPontosDeVidaDoAdiversario(25);
+        adversario6.setPontosDeVidaDoAdiversario(50);
         adversario6.setVidaMaximaDoAdversario(adversario6.getPontosDeVidaDoAdiversario());
         adversario6.setDanoDoAdversario(20);
         adversario6.setDefesaDoAdversario(20);
