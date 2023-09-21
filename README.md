@@ -21,6 +21,7 @@ O personagem do jogo contém os seguintes atributos:
   ### o Arma Pesada = K + d12 + 1,5*For.;
   ### o Arma Leve = K + d6 + d6 + d4 + Des.;
   ### o Armadura = K + 1,5*Cons.;
+  ### o Poções = d6 + d6 + d6;
 
 ## Venha se aventurar no mundo de DragonBane!!!
 
