@@ -148,10 +148,11 @@ public class SistemaDeCombate {
                 jogador.setNomeDoJogador(nomeDoJogador);
                 System.out.println("Bem vindo, " + jogador.getNomeDoJogador());
 
-                //Calculo da Vida maxima do Jogador
+                //Calculo da Vida do Jogador
                 for (int i = 0; i < 3; i++) 
                 {
                     vida += gerador.nextInt(6) + 1;
+                    System.out.println("Rolagem de vida: " + vida);
                 }
                 
                 levelUp(jogador,15, vida);
