@@ -265,8 +265,8 @@ public class SistemaDeCombate {
         
         while(true) //while do combate###########################################################################
         {
-            System.out.println("\n" + adversarioGenerico.getNomeDoAdiversario() + "\n" + adversarioGenerico.getPontosDeVidaDoAdiversario());
-            System.out.println("\n" + jogador.getNomeDoJogador() + "\n" + jogador.getPontosDeVidaDoJogador() + "\n");
+            System.out.println("\n" + adversarioGenerico.getNomeDoAdiversario() + "\n" + adversarioGenerico.getPontosDeVidaDoAdiversario() + "/" + adversarioGenerico.getVidaMaximaDoAdversario());
+            System.out.println("\n" + jogador.getNomeDoJogador() + "\n" + jogador.getPontosDeVidaDoJogador() + "/" + adversarioGenerico.getVidaMaximaDoJogador() + "\n");
             System.out.println("Pocoes do jogador: " + pocoesDoJogador.getQuantidadeDePocoes());
             System.out.println("Pocoes do adversario: " + pocoesDoAdversario.getQuantidadeDePocoes());
             System.out.printf("Armadura do jogador: %.0f\n", armadura.getValorDeArmadura());
