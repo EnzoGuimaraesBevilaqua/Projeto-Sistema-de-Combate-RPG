@@ -1,6 +1,5 @@
 package SistemaDeCombate;
 
-
 import java.util.Scanner;
 import java.util.Random;
 
@@ -244,9 +243,9 @@ public class SistemaDeCombate {
             }
             else if(escolhaInicial == 2)
             {
-                System.out.println("\nEra uma vez, em uma terra muito distante…\n");
+                System.out.println("\nEra uma vez, em uma terra muito distante...\n");
                 System.out.println("Criaturas misticas viviam no mesmo plano que os mortais, mas dentre elas existia uma que era mais temivel e perigosa que as outras.\n");
-                System.out.println("Uma vez por ano, o dragao Kalameet sobrevoava as montanhas a caminho dos vilarejos proximos, onde usava sua forca e chamas negras para destruir tudo em seu caminho…\n");
+                System.out.println("Uma vez por ano, o dragao Kalameet sobrevoava as montanhas a caminho dos vilarejos proximos, onde usava sua forca e chamas negras para destruir tudo em seu caminho.\n");
                 System.out.println("Durante eras, inumeros herois tentaram enfrentar e derrotar o grande dragao, mas ao se deparar com suas largas asas e escamas escuras como a noite, tremiam de medo.\n");
                 System.out.println("Ate que um dia...\n");
             }
@@ -286,7 +285,7 @@ public class SistemaDeCombate {
             System.out.println("Pocoes do adversario: " + pocoesDoAdversario.getQuantidadeDePocoes());
             System.out.printf("Armadura do jogador: %.0f\n", armadura.getValorDeArmadura());
             System.out.println("Armadura do adversario: " + adversarioGenerico.getDefesaDoAdversario());
-            System.out.printf("\nAgilidade do jogador: %d\n", jogador.getAgilidadeDoJogador());
+            System.out.printf("Agilidade do jogador: %d\n", jogador.getAgilidadeDoJogador());
             System.out.println("Agilidade do adversario: " + adversarioGenerico.getAgilidadeDoAdiversario());
             System.out.println("1- Atacar  2- Defender  3- Usar pocao");
             escolhaDeAcaoDoJogador = input.nextInt();
@@ -365,156 +364,144 @@ public class SistemaDeCombate {
                 escolhaDeAcaoDoAdversario = gerador.nextInt(6);
                        
                 adversarioGenerico.setDefesaDoAdversario(defesaMaximaDoAdversario);
-                if(adversario_stun==true)
+                if(adversario_stun == true)
                 {
-
-                       System.out.println("\nO adversario esta stunado! Nao consegue se mover!");
-                       adversario_stun=false;
-
+                    System.out.println("\nO adversario esta stunado! Nao consegue se mover!");
+                    adversario_stun = false;
                 }
                 else
                 {
-                if(escolhaDeAcaoDoAdversario == 0 || escolhaDeAcaoDoAdversario == 1 || escolhaDeAcaoDoAdversario == 2)
-                {
-                    System.out.println("\nAdversario: ataque");
-                            
-                    dano = (int) (adversarioGenerico.getDanoDoAdversario() - armadura.getValorDeArmadura());
-                    if(dano <= 0)
+                    if(escolhaDeAcaoDoAdversario == 0 || escolhaDeAcaoDoAdversario == 1 || escolhaDeAcaoDoAdversario == 2)
                     {
-                        dano = 1;
-                    }
-                    vida = jogador.getPontosDeVidaDoJogador();
+                        System.out.println("\nAdversario: ataque");
 
-                    vida -= dano;
-                    jogador.setPontosDeVidaDoJogador(vida);
-                    System.out.println("\nDano do adversario: " + dano);
-
-                    if(jogador.getPontosDeVidaDoJogador() <= 0)
-                    {
-                        System.out.println("\nGAME OVER\n");
-                        return 0;
-                    }
-                    
-                    if(armadura.getNomeDaArmadura() == "Bencao de Zeus")
-                    {
-                        stun= gerador.nextInt(5) + 1;
-                        if(stun == 1)
+                        dano = (int) (adversarioGenerico.getDanoDoAdversario() - armadura.getValorDeArmadura());
+                        if(dano <= 0)
                         {
-                        
-                            System.out.println("\nO adversario foi stunado pelos raios!!!");
-                            adversario_stun=true;
-                            
+                            dano = 1;
+                        }
+                        vida = jogador.getPontosDeVidaDoJogador();
+
+                        vida -= dano;
+                        jogador.setPontosDeVidaDoJogador(vida);
+                        System.out.println("\nDano do adversario: " + dano);
+
+                        if(jogador.getPontosDeVidaDoJogador() <= 0)
+                        {
+                            System.out.println("\nGAME OVER\n");
+                            return 0;
+                        }
+
+                        if(armadura.getNomeDaArmadura() == "Bencao de Zeus")
+                        {
+                            stun = gerador.nextInt(5) + 1;
+                            if(stun == 1 || stun == 2)
+                            {
+                                System.out.println("\nO adversario foi stunado pelos raios!!!");
+                                adversario_stun = true;
+                            }
                         }    
-                        
-                        
-                    }    
-                }
-                else if(escolhaDeAcaoDoAdversario == 3 || escolhaDeAcaoDoAdversario == 4)
-                {
-                    System.out.println("\nAdversario: defesa");
-                            
-                    adversarioGenerico.setDefesaDoAdversario(2*adversarioGenerico.getDefesaDoAdversario());
-                }
-                else if(escolhaDeAcaoDoAdversario == 5)
-                {
-                    System.out.println("\nAdversario: pocao");
-                            
-                    if(pocoesDoAdversario.getQuantidadeDePocoes() >= 1)
+                    }
+                    else if(escolhaDeAcaoDoAdversario == 3 || escolhaDeAcaoDoAdversario == 4)
                     {
-                        vida = adversarioGenerico.getPontosDeVidaDoAdiversario();
-                        pocao = pocoesDoAdversario.getQuantidadeDePocoes();
-                              
-                        vida += pocoesDoAdversario.getCura();
-                        pocao--;
-                              
-                        pocoesDoAdversario.setQuantidadeDePocoes(pocao);
-                        adversarioGenerico.setPontosDeVidaDoAdiversario(vida);
-                                
-                        if(adversarioGenerico.getPontosDeVidaDoAdiversario() > adversarioGenerico.getVidaMaximaDoAdversario())
+                        System.out.println("\nAdversario: defesa");
+
+                        adversarioGenerico.setDefesaDoAdversario(2*adversarioGenerico.getDefesaDoAdversario());
+                    }
+                    else if(escolhaDeAcaoDoAdversario == 5)
+                    {
+                        System.out.println("\nAdversario: pocao");
+
+                        if(pocoesDoAdversario.getQuantidadeDePocoes() >= 1)
                         {
-                            adversarioGenerico.setPontosDeVidaDoAdiversario(adversarioGenerico.getVidaMaximaDoAdversario());
+                            vida = adversarioGenerico.getPontosDeVidaDoAdiversario();
+                            pocao = pocoesDoAdversario.getQuantidadeDePocoes();
+
+                            vida += pocoesDoAdversario.getCura();
+                            pocao--;
+
+                            pocoesDoAdversario.setQuantidadeDePocoes(pocao);
+                            adversarioGenerico.setPontosDeVidaDoAdiversario(vida);
+
+                            if(adversarioGenerico.getPontosDeVidaDoAdiversario() > adversarioGenerico.getVidaMaximaDoAdversario())
+                            {
+                                adversarioGenerico.setPontosDeVidaDoAdiversario(adversarioGenerico.getVidaMaximaDoAdversario());
+                            }
                         }
                     }
-                }
-            }
-           }      
+                }//if-else stun
+            }      
             else if(adversarioGenerico.getAgilidadeDoAdiversario() > jogador.getAgilidadeDoJogador())
             {
                 escolhaDeAcaoDoAdversario = gerador.nextInt(6);
                 
                 adversarioGenerico.setDefesaDoAdversario(defesaMaximaDoAdversario);
-                if(adversario_stun==true)
+                if(adversario_stun == true)
                 {
-
-                       System.out.println("\nO adversario esta stunado! Nao consegue se mover!");
-                       adversario_stun=false;
-
+                    System.out.println("\nO adversario esta stunado! Nao consegue se mover!");
+                    adversario_stun = false;
                 }
                 else
                 {
-                if(escolhaDeAcaoDoAdversario == 0 || escolhaDeAcaoDoAdversario == 1 || escolhaDeAcaoDoAdversario == 2)
-                {
-                    System.out.println("\nAdversario: ataque");
-                            
-                    dano = (int) (adversarioGenerico.getDanoDoAdversario() - armadura.getValorDeArmadura());
-                    if(dano <= 0)
+                    if(escolhaDeAcaoDoAdversario == 0 || escolhaDeAcaoDoAdversario == 1 || escolhaDeAcaoDoAdversario == 2)
                     {
-                        dano = 1;
-                    }
-                    vida = jogador.getPontosDeVidaDoJogador();
+                        System.out.println("\nAdversario: ataque");
 
-                    vida -= dano;
-                    jogador.setPontosDeVidaDoJogador(vida);
-                    System.out.println("\nDano do adversario: " + dano);
+                        dano = (int) (adversarioGenerico.getDanoDoAdversario() - armadura.getValorDeArmadura());
+                        if(dano <= 0)
+                        {
+                            dano = 1;
+                        }
+                        vida = jogador.getPontosDeVidaDoJogador();
 
-                    if(jogador.getPontosDeVidaDoJogador() <= 0)
-                    {
-                        System.out.println("\nGAME OVER\n");
-                        return 0;
-                    }
-                    
-                    if(armadura.getNomeDaArmadura() == "Bencao de Zeus")
-                    {
-                        stun= gerador.nextInt(5) + 1;
-                        if(stun == 1 || stun == 2)
+                        vida -= dano;
+                        jogador.setPontosDeVidaDoJogador(vida);
+                        System.out.println("\nDano do adversario: " + dano);
+
+                        if(jogador.getPontosDeVidaDoJogador() <= 0)
                         {
-                        
-                            System.out.println("\nO adversario foi stunado pelos raios!!!");
-                            adversario_stun=true;
-                            
-                        }    
-                        
-                        
-                    }
-                }
-                else if(escolhaDeAcaoDoAdversario == 3 || escolhaDeAcaoDoAdversario == 4)
-                {
-                    System.out.println("\nAdversario: defesa");
-                            
-                    adversarioGenerico.setDefesaDoAdversario(2*adversarioGenerico.getDefesaDoAdversario());
-                }
-                else if(escolhaDeAcaoDoAdversario == 5)
-                {
-                    System.out.println("\nAdversario: pocao");
-                            
-                    if(pocoesDoAdversario.getQuantidadeDePocoes() >= 1)
-                    {
-                        vida = adversarioGenerico.getPontosDeVidaDoAdiversario();
-                        pocao = pocoesDoAdversario.getQuantidadeDePocoes();
-                              
-                        vida += pocoesDoAdversario.getCura();
-                        pocao--;
-                              
-                        pocoesDoAdversario.setQuantidadeDePocoes(pocao);
-                        adversarioGenerico.setPontosDeVidaDoAdiversario(vida);
-                                
-                        if(adversarioGenerico.getPontosDeVidaDoAdiversario() > adversarioGenerico.getVidaMaximaDoAdversario())
+                            System.out.println("\nGAME OVER\n");
+                            return 0;
+                        }
+
+                        if(armadura.getNomeDaArmadura() == "Bencao de Zeus")
                         {
-                            adversarioGenerico.setPontosDeVidaDoAdiversario(adversarioGenerico.getVidaMaximaDoAdversario());
+                            stun = gerador.nextInt(5) + 1;
+                            if(stun == 1 || stun == 2)
+                            {
+                                System.out.println("\nO adversario foi stunado pelos raios!!!");
+                                adversario_stun = true;
+                            }
                         }
                     }
-                }
-                } //if-else stun
+                    else if(escolhaDeAcaoDoAdversario == 3 || escolhaDeAcaoDoAdversario == 4)
+                    {
+                        System.out.println("\nAdversario: defesa");
+
+                        adversarioGenerico.setDefesaDoAdversario(2*adversarioGenerico.getDefesaDoAdversario());
+                    }
+                    else if(escolhaDeAcaoDoAdversario == 5)
+                    {
+                        System.out.println("\nAdversario: pocao");
+
+                        if(pocoesDoAdversario.getQuantidadeDePocoes() >= 1)
+                        {
+                            vida = adversarioGenerico.getPontosDeVidaDoAdiversario();
+                            pocao = pocoesDoAdversario.getQuantidadeDePocoes();
+
+                            vida += pocoesDoAdversario.getCura();
+                            pocao--;
+
+                            pocoesDoAdversario.setQuantidadeDePocoes(pocao);
+                            adversarioGenerico.setPontosDeVidaDoAdiversario(vida);
+
+                            if(adversarioGenerico.getPontosDeVidaDoAdiversario() > adversarioGenerico.getVidaMaximaDoAdversario())
+                            {
+                                adversarioGenerico.setPontosDeVidaDoAdiversario(adversarioGenerico.getVidaMaximaDoAdversario());
+                            }
+                        }
+                    }
+                }//if-else stun
                 
                 armadura.setValorDeArmadura(armaduraMaximaDoJogador);
                 if(escolhaDeAcaoDoJogador == 1)
@@ -567,9 +554,8 @@ public class SistemaDeCombate {
                         }
                     }
                 }
-                        
+            } //if-else agilidade        
             
-          } //if-else agilidade        
         } //while do combate#####################################################################################
         
         return 0;
@@ -602,7 +588,8 @@ public class SistemaDeCombate {
 
         if(totalDePontos > 0)
         {
-            while(true){
+            while(true)
+            {
                 System.out.printf("Pontos Disponiveis: %d\n", totalDePontos);
                 System.out.printf("Constituicao: ");
 
@@ -620,7 +607,8 @@ public class SistemaDeCombate {
         if(totalDePontos > 0)
         {
             
-            while(true){
+            while(true)
+            {
                 System.out.printf("Pontos Disponiveis: %d\n", totalDePontos);
                 System.out.printf("Agilidade: ");
 
@@ -636,7 +624,8 @@ public class SistemaDeCombate {
         }
         if(totalDePontos > 0)
         {
-            while(true){
+            while(true)
+            {
                 System.out.printf("Pontos Disponiveis: %d\n", totalDePontos);
                 System.out.printf("Destreza: ");
 
@@ -735,11 +724,10 @@ public class SistemaDeCombate {
                 else if(armaduraDoJogador.getNomeDaArmadura() == "Bencao de Zeus")
                 {
                     System.out.println("\n" + armaduraGenerica1.getNomeDaArmadura() + " selecionada.");
-                    
                     System.out.println("\nSeu corpo eh envolto em raios");
-                    
                     System.out.println("\nHabilidade Especial: 40% de chance de stunar quem o atacar");
                 }    
+                
                 armaduraDoJogador.setConstanteDeDefesa(armaduraGenerica1.getConstanteDeDefesa());
                 break;
             }
@@ -765,9 +753,9 @@ public class SistemaDeCombate {
                 
                 if(armaduraDoJogador.getNomeDaArmadura() == "Armadura de Berserk")
                 {
-                    System.out.println("\nBoa defesa, porem pesada (perdeu 2 de agilidade)");
+                    System.out.println("\nOtima defesa, porem bem pesada (perdeu 4 de agilidade)");
 
-                    jogador.setAgilidadeDoJogador(jogador.getAgilidadeDoJogador() - 2);
+                    jogador.setAgilidadeDoJogador(jogador.getAgilidadeDoJogador() - 4);
 
                 }
                 
