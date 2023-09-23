@@ -131,6 +131,17 @@ public class SistemaDeCombate {
         
         while(true)
         {
+            System.out.println(" /$$$$$$$                                                         /$$$$$$$                               ");
+            System.out.println("| $$__  $$                                                       | $$__  $$                              ");
+            System.out.println("| $$  \\ $$  /$$$$$$  /$$$$$$   /$$$$$$   /$$$$$$  /$$$$$$$       | $$  \\ $$  /$$$$$$  /$$$$$$$   /$$$$$$ ");
+            System.out.println("| $$  | $$ /$$__  $$|____  $$ /$$__  $$ /$$__  $$| $$__  $$      | $$$$$$$  |____  $$| $$__  $$ /$$__  $$");
+            System.out.println("| $$  | $$| $$  \\__/ /$$$$$$$| $$  \\ $$| $$  \\ $$| $$  \\ $$      | $$__  $$  /$$$$$$$| $$  \\ $$| $$$$$$$$");
+            System.out.println("| $$  | $$| $$      /$$__  $$| $$  | $$| $$  | $$| $$  | $$      | $$  \\ $$ /$$__  $$| $$  | $$| $$_____/");
+            System.out.println("| $$$$$$$/| $$     |  $$$$$$$|  $$$$$$$|  $$$$$$/| $$  | $$      | $$$$$$$/|  $$$$$$$| $$  | $$|  $$$$$$$");
+            System.out.println("|_______/ |__/      \\_______/ \\____  $$ \\______/ |__/  |__/      |_______/  \\_______/|__/  |__/ \\_______/");
+            System.out.println("                              /$$  \\ $$                                                                  ");
+            System.out.println("                             |  $$$$$$/                                                                  ");
+            System.out.println("                              \\______/                                                                   ");
             System.out.println("1- Comecar");
             System.out.println("2- Historia");
             System.out.println("3- Sair");
