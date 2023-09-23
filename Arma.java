@@ -6,7 +6,6 @@ public class Arma {
     private int categoriaDaArma;
     private int constanteDeDano;
     
-    
     public void setNomeDaArma(String nomeDaArma)
     {
         this.nomeDaArma = nomeDaArma;
@@ -16,7 +15,6 @@ public class Arma {
     {
         return this.nomeDaArma;
     }
-    
     
     public void setCategoriaDaArma(int categoriaDaArma)
     {
