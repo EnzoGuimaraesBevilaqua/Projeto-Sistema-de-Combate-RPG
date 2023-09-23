@@ -1,5 +1,6 @@
 package SistemaDeCombate;
 
+
 import java.util.Scanner;
 import java.util.Random;
 
@@ -68,23 +69,23 @@ public class SistemaDeCombate {
         adversario4.setNomeDoAdiversario("Elfo negro");
         adversario4.setPontosDeVidaDoAdiversario(42);
         adversario4.setVidaMaximaDoAdversario(adversario4.getPontosDeVidaDoAdiversario());
-        adversario4.setDanoDoAdversario(30);
+        adversario4.setDanoDoAdversario(20);
         adversario4.setDefesaDoAdversario(20);
-        adversario4.setAgilidadeDoAdiversario(5.5);
+        adversario4.setAgilidadeDoAdiversario(3.5);
         
         adversario5.setNomeDoAdiversario("Bruxa");
         adversario5.setPontosDeVidaDoAdiversario(40);
         adversario5.setVidaMaximaDoAdversario(adversario5.getPontosDeVidaDoAdiversario());
-        adversario5.setDanoDoAdversario(32);
+        adversario5.setDanoDoAdversario(23);
         adversario5.setDefesaDoAdversario(18);
-        adversario5.setAgilidadeDoAdiversario(8.5);
+        adversario5.setAgilidadeDoAdiversario(3.5);
         
         adversario6.setNomeDoAdiversario("Kalameet");
         adversario6.setPontosDeVidaDoAdiversario(100);
         adversario6.setVidaMaximaDoAdversario(adversario6.getPontosDeVidaDoAdiversario());
         adversario6.setDanoDoAdversario(50);
         adversario6.setDefesaDoAdversario(20);
-        adversario6.setAgilidadeDoAdiversario(5.5);
+        adversario6.setAgilidadeDoAdiversario(3.5);
         
         arma1.setNomeDaArma("Espada de Madeira (Leve)");
         arma1.setCategoriaDaArma(1);
@@ -102,7 +103,7 @@ public class SistemaDeCombate {
         arma4.setCategoriaDaArma(2);
         arma4.setConstanteDeDano(10);
         
-        arma5.setNomeDaArma("Martelo Colossal (Pesada)");
+        arma5.setNomeDaArma("Moonlight Greatsword (Pesada)");
         arma5.setCategoriaDaArma(2);
         arma5.setConstanteDeDano(12);
         
@@ -119,10 +120,10 @@ public class SistemaDeCombate {
         armadura3.setNomeDaArmadura("Armadura de Malha");
         armadura3.setConstanteDeDefesa(3);
         
-        armadura4.setNomeDaArmadura("Armadura de Cavaleiro");
+        armadura4.setNomeDaArmadura("Bencao de Zeus");
         armadura4.setConstanteDeDefesa(5);
         
-        armadura5.setNomeDaArmadura("Armadura de Paladino");
+        armadura5.setNomeDaArmadura("Armadura Matadora de Dragao");
         armadura5.setConstanteDeDefesa(8);
         
         armadura6.setNomeDaArmadura("Armadura de Berserk");
@@ -158,7 +159,7 @@ public class SistemaDeCombate {
                 
                 escolhaDeArma(armaDoJogador, arma1, arma2, arma3);
                 
-                escolhaDeArmadura(armaduraDoJogador, armadura1, armadura2, armadura3);
+                escolhaDeArmadura(armaduraDoJogador, armadura1, armadura2, armadura3, jogador);
                 
                 armaduraDoJogador.setValorDeArmadura(armaduraDoJogador.getConstanteDeDefesa() + 1.5*jogador.getConstituicaoDoJogador());
                 
@@ -181,7 +182,7 @@ public class SistemaDeCombate {
                 {
                     levelUp(jogador, 5, jogador.getVidaMaximaDoJogador());
                     
-                    escolhaDeArma(armaDoJogador, arma4, arma5, arma6);
+                    escolhaDeArmadura(armaduraDoJogador, armadura4, armadura5, armadura6, jogador);
                     
                     armaduraDoJogador.setValorDeArmadura(armaduraDoJogador.getConstanteDeDefesa() + 1.5*jogador.getConstituicaoDoJogador());
                     
@@ -200,7 +201,8 @@ public class SistemaDeCombate {
                     {
                         levelUp(jogador, 10, jogador.getVidaMaximaDoJogador());
                         
-                        escolhaDeArmadura(armaduraDoJogador, armadura4, armadura5, armadura6);
+                        escolhaDeArma(armaDoJogador, arma4, arma5, arma6);
+                        
                         
                         armaduraDoJogador.setValorDeArmadura(armaduraDoJogador.getConstanteDeDefesa() + 1.5*jogador.getConstituicaoDoJogador());
                         
@@ -262,15 +264,19 @@ public class SistemaDeCombate {
         double dano;
         int vida = 0;
         int pocao;
+        int stun = 0;
+        boolean adversario_stun=false;
         
         while(true) //while do combate###########################################################################
         {
             System.out.println("\n" + adversarioGenerico.getNomeDoAdiversario() + "\n" + adversarioGenerico.getPontosDeVidaDoAdiversario() + "/" + adversarioGenerico.getVidaMaximaDoAdversario());
-            System.out.println("\n" + jogador.getNomeDoJogador() + "\n" + jogador.getPontosDeVidaDoJogador() + "/" + adversarioGenerico.getVidaMaximaDoJogador() + "\n");
+            System.out.println("\n" + jogador.getNomeDoJogador() + "\n" + jogador.getPontosDeVidaDoJogador() + "/" + jogador.getVidaMaximaDoJogador() + "\n");
             System.out.println("Pocoes do jogador: " + pocoesDoJogador.getQuantidadeDePocoes());
             System.out.println("Pocoes do adversario: " + pocoesDoAdversario.getQuantidadeDePocoes());
             System.out.printf("Armadura do jogador: %.0f\n", armadura.getValorDeArmadura());
             System.out.println("Armadura do adversario: " + adversarioGenerico.getDefesaDoAdversario());
+            System.out.printf("\nAgilidade do jogador: %d\n", jogador.getAgilidadeDoJogador());
+            System.out.println("Agilidade do adversario: " + adversarioGenerico.getAgilidadeDoAdiversario());
             System.out.println("1- Atacar  2- Defender  3- Usar pocao");
             escolhaDeAcaoDoJogador = input.nextInt();
             
@@ -348,6 +354,15 @@ public class SistemaDeCombate {
                 escolhaDeAcaoDoAdversario = gerador.nextInt(6);
                        
                 adversarioGenerico.setDefesaDoAdversario(defesaMaximaDoAdversario);
+                if(adversario_stun==true)
+                {
+
+                       System.out.println("\nO adversario esta stunado! Nao consegue se mover!");
+                       adversario_stun=false;
+
+                }
+                else
+                {
                 if(escolhaDeAcaoDoAdversario == 0 || escolhaDeAcaoDoAdversario == 1 || escolhaDeAcaoDoAdversario == 2)
                 {
                     System.out.println("\nAdversario: ataque");
@@ -368,6 +383,20 @@ public class SistemaDeCombate {
                         System.out.println("\nGAME OVER\n");
                         return 0;
                     }
+                    
+                    if(armadura.getNomeDaArmadura() == "Bencao de Zeus")
+                    {
+                        stun= gerador.nextInt(5) + 1;
+                        if(stun == 1)
+                        {
+                        
+                            System.out.println("\nO adversario foi stunado pelos raios!!!");
+                            adversario_stun=true;
+                            
+                        }    
+                        
+                        
+                    }    
                 }
                 else if(escolhaDeAcaoDoAdversario == 3 || escolhaDeAcaoDoAdversario == 4)
                 {
@@ -397,12 +426,21 @@ public class SistemaDeCombate {
                     }
                 }
             }
-                    
+           }      
             else if(adversarioGenerico.getAgilidadeDoAdiversario() > jogador.getAgilidadeDoJogador())
             {
                 escolhaDeAcaoDoAdversario = gerador.nextInt(6);
                 
                 adversarioGenerico.setDefesaDoAdversario(defesaMaximaDoAdversario);
+                if(adversario_stun==true)
+                {
+
+                       System.out.println("\nO adversario esta stunado! Nao consegue se mover!");
+                       adversario_stun=false;
+
+                }
+                else
+                {
                 if(escolhaDeAcaoDoAdversario == 0 || escolhaDeAcaoDoAdversario == 1 || escolhaDeAcaoDoAdversario == 2)
                 {
                     System.out.println("\nAdversario: ataque");
@@ -422,6 +460,20 @@ public class SistemaDeCombate {
                     {
                         System.out.println("\nGAME OVER\n");
                         return 0;
+                    }
+                    
+                    if(armadura.getNomeDaArmadura() == "Bencao de Zeus")
+                    {
+                        stun= gerador.nextInt(5) + 1;
+                        if(stun == 1 || stun == 2)
+                        {
+                        
+                            System.out.println("\nO adversario foi stunado pelos raios!!!");
+                            adversario_stun=true;
+                            
+                        }    
+                        
+                        
                     }
                 }
                 else if(escolhaDeAcaoDoAdversario == 3 || escolhaDeAcaoDoAdversario == 4)
@@ -451,6 +503,7 @@ public class SistemaDeCombate {
                         }
                     }
                 }
+                } //if-else stun
                 
                 armadura.setValorDeArmadura(armaduraMaximaDoJogador);
                 if(escolhaDeAcaoDoJogador == 1)
@@ -504,8 +557,8 @@ public class SistemaDeCombate {
                     }
                 }
                         
-            } //if-else agilidade
-                    
+            
+          } //if-else agilidade        
         } //while do combate#####################################################################################
         
         return 0;
@@ -649,7 +702,7 @@ public class SistemaDeCombate {
         }
     }
     
-    public static void escolhaDeArmadura(Armadura armaduraDoJogador, Armadura armaduraGenerica1, Armadura armaduraGenerica2, Armadura armaduraGenerica3)
+    public static void escolhaDeArmadura(Armadura armaduraDoJogador, Armadura armaduraGenerica1, Armadura armaduraGenerica2, Armadura armaduraGenerica3, Jogador jogador)
     {
         Scanner input = new Scanner(System.in);
         
@@ -668,24 +721,45 @@ public class SistemaDeCombate {
                 {
                     System.out.println("\nSem Armadura?");
                 }
-                else
+                else if(armaduraDoJogador.getNomeDaArmadura() == "Bencao de Zeus")
                 {
                     System.out.println("\n" + armaduraGenerica1.getNomeDaArmadura() + " selecionada.");
+                    
+                    System.out.println("\nSeu corpo eh envolto em raios");
+                    
+                    System.out.println("\nHabilidade Especial: 40% de chance de stunar quem o atacar");
                 }    
                 armaduraDoJogador.setConstanteDeDefesa(armaduraGenerica1.getConstanteDeDefesa());
                 break;
             }
             else if(escolhaDeArmadura == 2)
-            {
-                System.out.println("\n" + armaduraGenerica2.getNomeDaArmadura() + " selecionada.");
+            {   
                 armaduraDoJogador.setNomeDaArmadura(armaduraGenerica2.getNomeDaArmadura());
+                System.out.println("\n" + armaduraGenerica2.getNomeDaArmadura() + " selecionada.");
+                
+                if(armaduraDoJogador.getNomeDaArmadura() == "Armadura Matadora de Dragao")
+                {
+                    System.out.println("\nBoa defesa, porem pesada (perdeu 2 de agilidade)");
+                     
+                    jogador.setAgilidadeDoJogador(jogador.getAgilidadeDoJogador() - 2);
+                }
+                
                 armaduraDoJogador.setConstanteDeDefesa(armaduraGenerica2.getConstanteDeDefesa());
                 break;
             }
             else if(escolhaDeArmadura == 3)
             {
-                System.out.println("\n" + armaduraGenerica3.getNomeDaArmadura() + " selecionada.");
                 armaduraDoJogador.setNomeDaArmadura(armaduraGenerica3.getNomeDaArmadura());
+                System.out.println("\n" + armaduraGenerica3.getNomeDaArmadura() + " selecionada.");
+                
+                if(armaduraDoJogador.getNomeDaArmadura() == "Armadura de Berserk")
+                {
+                    System.out.println("\nBoa defesa, porem pesada (perdeu 2 de agilidade)");
+
+                    jogador.setAgilidadeDoJogador(jogador.getAgilidadeDoJogador() - 2);
+
+                }
+                
                 armaduraDoJogador.setConstanteDeDefesa(armaduraGenerica3.getConstanteDeDefesa());
                 break;
             }
