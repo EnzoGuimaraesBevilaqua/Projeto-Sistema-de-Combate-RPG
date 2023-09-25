@@ -9,22 +9,22 @@ public class Adversario {
     private int defesaDoAdversario = 0;
     private double agilidadeDoAdversario = 0;
     
-    public void setNomeDoAdiversario(String nomeDoAdiversario)
+    public void setNomeDoAdversario(String nomeDoAdversario)
     {
-        this.nomeDoAdversario = nomeDoAdiversario;
+        this.nomeDoAdversario = nomeDoAdversario;
     }
     
-    public String getNomeDoAdiversario()
+    public String getNomeDoAdversario()
     {
         return this.nomeDoAdversario;
     }
     
-    public void setPontosDeVidaDoAdiversario(int pontosDeVidaDoAdiversario)
+    public void setPontosDeVidaDoAdversario(int pontosDeVidaDoAdversario)
     {
-        this.pontosDeVidaDoAdversario = pontosDeVidaDoAdiversario;
+        this.pontosDeVidaDoAdversario = pontosDeVidaDoAdversario;
     }
     
-    public int getPontosDeVidaDoAdiversario()
+    public int getPontosDeVidaDoAdversario()
     {
         return this.pontosDeVidaDoAdversario;
     }
@@ -49,9 +49,9 @@ public class Adversario {
         return this.danoDoAdversario;
     }
     
-    public void setDefesaDoAdversario(int constituicaoDoAdiversario)
+    public void setDefesaDoAdversario(int constituicaoDoAdversario)
     {
-        this.defesaDoAdversario = constituicaoDoAdiversario;
+        this.defesaDoAdversario = constituicaoDoAdversario;
     }
     
     public int getDefesaDoAdversario()
@@ -59,12 +59,12 @@ public class Adversario {
         return this.defesaDoAdversario;
     }
     
-    public void setAgilidadeDoAdiversario(double agilidadeDoAdiversario)
+    public void setAgilidadeDoAdversario(double agilidadeDoAdversario)
     {
-        this.agilidadeDoAdversario = agilidadeDoAdiversario;
+        this.agilidadeDoAdversario = agilidadeDoAdversario;
     }
     
-    public double getAgilidadeDoAdiversario()
+    public double getAgilidadeDoAdversario()
     {
         return this.agilidadeDoAdversario;
     }
