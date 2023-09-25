@@ -41,50 +41,51 @@ public class SistemaDeCombate {
         int escolhaInicial;
         String nomeDoJogador;
         int vida = 0;
+        int rolagemDeVida = 0;
         int adversarioSelecionado;
         int vitoria = 0;
         
-        adversario1.setNomeDoAdiversario("Golem");
-        adversario1.setPontosDeVidaDoAdiversario(20);
-        adversario1.setVidaMaximaDoAdversario(adversario1.getPontosDeVidaDoAdiversario());
+        adversario1.setNomeDoAdversario("Golem");
+        adversario1.setPontosDeVidaDoAdversario(20);
+        adversario1.setVidaMaximaDoAdversario(adversario1.getPontosDeVidaDoAdversario());
         adversario1.setDanoDoAdversario(12);
         adversario1.setDefesaDoAdversario(18);
-        adversario1.setAgilidadeDoAdiversario(1.5);
+        adversario1.setAgilidadeDoAdversario(1.5);
         
-        adversario2.setNomeDoAdiversario("Lobisomem");
-        adversario2.setPontosDeVidaDoAdiversario(15);
-        adversario2.setVidaMaximaDoAdversario(adversario2.getPontosDeVidaDoAdiversario());
+        adversario2.setNomeDoAdversario("Lobisomem");
+        adversario2.setPontosDeVidaDoAdversario(15);
+        adversario2.setVidaMaximaDoAdversario(adversario2.getPontosDeVidaDoAdversario());
         adversario2.setDanoDoAdversario(14);
         adversario2.setDefesaDoAdversario(12);
-        adversario2.setAgilidadeDoAdiversario(9.5);
+        adversario2.setAgilidadeDoAdversario(9.5);
         
-        adversario3.setNomeDoAdiversario("Bugbear");
-        adversario3.setPontosDeVidaDoAdiversario(12);
-        adversario3.setVidaMaximaDoAdversario(adversario3.getPontosDeVidaDoAdiversario());
+        adversario3.setNomeDoAdversario("Bugbear");
+        adversario3.setPontosDeVidaDoAdversario(12);
+        adversario3.setVidaMaximaDoAdversario(adversario3.getPontosDeVidaDoAdversario());
         adversario3.setDanoDoAdversario(10);
         adversario3.setDefesaDoAdversario(14);
-        adversario3.setAgilidadeDoAdiversario(6.5);
+        adversario3.setAgilidadeDoAdversario(6.5);
         
-        adversario4.setNomeDoAdiversario("Elfo negro");
-        adversario4.setPontosDeVidaDoAdiversario(42);
-        adversario4.setVidaMaximaDoAdversario(adversario4.getPontosDeVidaDoAdiversario());
+        adversario4.setNomeDoAdversario("Elfo negro");
+        adversario4.setPontosDeVidaDoAdversario(42);
+        adversario4.setVidaMaximaDoAdversario(adversario4.getPontosDeVidaDoAdversario());
         adversario4.setDanoDoAdversario(20);
         adversario4.setDefesaDoAdversario(20);
-        adversario4.setAgilidadeDoAdiversario(3.5);
+        adversario4.setAgilidadeDoAdversario(3.5);
         
-        adversario5.setNomeDoAdiversario("Bruxa");
-        adversario5.setPontosDeVidaDoAdiversario(40);
-        adversario5.setVidaMaximaDoAdversario(adversario5.getPontosDeVidaDoAdiversario());
+        adversario5.setNomeDoAdversario("Bruxa");
+        adversario5.setPontosDeVidaDoAdversario(40);
+        adversario5.setVidaMaximaDoAdversario(adversario5.getPontosDeVidaDoAdversario());
         adversario5.setDanoDoAdversario(23);
         adversario5.setDefesaDoAdversario(18);
-        adversario5.setAgilidadeDoAdiversario(3.5);
+        adversario5.setAgilidadeDoAdversario(3.5);
         
-        adversario6.setNomeDoAdiversario("Kalameet");
-        adversario6.setPontosDeVidaDoAdiversario(100);
-        adversario6.setVidaMaximaDoAdversario(adversario6.getPontosDeVidaDoAdiversario());
+        adversario6.setNomeDoAdversario("Kalameet");
+        adversario6.setPontosDeVidaDoAdversario(100);
+        adversario6.setVidaMaximaDoAdversario(adversario6.getPontosDeVidaDoAdversario());
         adversario6.setDanoDoAdversario(50);
         adversario6.setDefesaDoAdversario(20);
-        adversario6.setAgilidadeDoAdiversario(3.5);
+        adversario6.setAgilidadeDoAdversario(3.5);
         
         arma1.setNomeDaArma("Espada de Madeira (Leve)");
         arma1.setCategoriaDaArma(1);
@@ -159,13 +160,15 @@ public class SistemaDeCombate {
                 }
                 jogador.setNomeDoJogador(nomeDoJogador);
                 System.out.println("Bem vindo, " + jogador.getNomeDoJogador() + "\n");
-
-                //Calculo da Vida do Jogador
-                for (int i = 0; i < 3; i++) 
+                
+                
+                for(int i = 0; i < 3; i++) 
                 {
-                    vida += gerador.nextInt(6) + 1;
-                    System.out.println("Rolagem de vida: " + vida);
+                    rolagemDeVida = gerador.nextInt(6) + 1;
+                    System.out.printf("%d° rolagem de vida: %d\n", i + 1, rolagemDeVida);
+                    vida += rolagemDeVida;
                 }
+                System.out.println("Total: " + vida);
                 
                 levelUp(jogador,15, vida);
                 
@@ -173,7 +176,7 @@ public class SistemaDeCombate {
                 
                 escolhaDeArmadura(armaduraDoJogador, armadura1, armadura2, armadura3, jogador);
                 
-                armaduraDoJogador.setValorDeArmadura(armaduraDoJogador.getConstanteDeDefesa() + 1.5*jogador.getConstituicaoDoJogador());
+                armaduraDoJogador.setValorDeArmadura(armaduraDoJogador.getConstanteDeDefesa() + (int) (1.5 * jogador.getConstituicaoDoJogador()));
                 
                 adversarioSelecionado = gerador.nextInt(3);
                 
@@ -192,11 +195,12 @@ public class SistemaDeCombate {
                 
                 if(vitoria == 1)
                 {
+                    System.out.println("Level Up!!!");
                     levelUp(jogador, 5, jogador.getVidaMaximaDoJogador());
                     
                     escolhaDeArmadura(armaduraDoJogador, armadura4, armadura5, armadura6, jogador);
                     
-                    armaduraDoJogador.setValorDeArmadura(armaduraDoJogador.getConstanteDeDefesa() + 1.5*jogador.getConstituicaoDoJogador());
+                    armaduraDoJogador.setValorDeArmadura(armaduraDoJogador.getConstanteDeDefesa() + (int) (1.5 * jogador.getConstituicaoDoJogador()));
                     
                     adversarioSelecionado = gerador.nextInt(2);
                     
@@ -211,12 +215,12 @@ public class SistemaDeCombate {
                     
                     if(vitoria == 1)
                     {
+                        System.out.println("Level Up!!!");
                         levelUp(jogador, 10, jogador.getVidaMaximaDoJogador());
                         
                         escolhaDeArma(armaDoJogador, arma4, arma5, arma6);
                         
-                        
-                        armaduraDoJogador.setValorDeArmadura(armaduraDoJogador.getConstanteDeDefesa() + 1.5*jogador.getConstituicaoDoJogador());
+                        armaduraDoJogador.setValorDeArmadura(armaduraDoJogador.getConstanteDeDefesa() + (int) (1.5 * jogador.getConstituicaoDoJogador()));
                         
                         vitoria = combate(adversario6, jogador, armaDoJogador, armaduraDoJogador);
                         
@@ -266,11 +270,11 @@ public class SistemaDeCombate {
                 System.out.println(arma5.getNomeDaArma() + ": K = " + arma5.getConstanteDeDano());
                 System.out.println(arma6.getNomeDaArma() + ": K = " + arma6.getConstanteDeDano());
                 System.out.println("\nArmaduras");
-                System.out.println(armadura2.getNomeDaArmadura() + ": K = " + (int)armadura2.getConstanteDeDefesa());
-                System.out.println(armadura3.getNomeDaArmadura() + ": K = " + (int)armadura3.getConstanteDeDefesa());
-                System.out.println(armadura4.getNomeDaArmadura() + ": K = " + (int)armadura4.getConstanteDeDefesa() + " Habilidade especial: 40% de chance de stunar quem o ataca");
-                System.out.println(armadura5.getNomeDaArmadura() + ": K = " + (int)armadura5.getConstanteDeDefesa() + " Nerf de Agilidade: -1 Habilidade especial: Concede resistencia aos ataques de dragoes (-5)");
-                System.out.println(armadura6.getNomeDaArmadura() + ": K = " + (int)armadura6.getConstanteDeDefesa() + " Nerf de Agilidade: -2");
+                System.out.println(armadura2.getNomeDaArmadura() + ": K = " + (int) armadura2.getConstanteDeDefesa());
+                System.out.println(armadura3.getNomeDaArmadura() + ": K = " + (int) armadura3.getConstanteDeDefesa());
+                System.out.println(armadura4.getNomeDaArmadura() + ": K = " + (int) armadura4.getConstanteDeDefesa() + " Habilidade especial: 40% de chance de stunar quem o ataca");
+                System.out.println(armadura5.getNomeDaArmadura() + ": K = " + (int) armadura5.getConstanteDeDefesa() + " Nerf de Agilidade: -1 Habilidade especial: Concede resistencia aos ataques de dragoes (-5)");
+                System.out.println(armadura6.getNomeDaArmadura() + ": K = " + (int) armadura6.getConstanteDeDefesa() + " Nerf de Agilidade: -2");
                 System.out.println("\nVoltar ao menu (1)");
                 int confirmacao = input.nextInt();
             }    
@@ -298,41 +302,43 @@ public class SistemaDeCombate {
         int escolhaDeAcaoDoAdversario;
         double dano;
         int vida = 0;
+        int cura = 0;
         int pocao;
         int stun = 0;
-        boolean adversario_stun=false;
+        boolean adversario_stun = false;
         
-        while(true) //while do combate###########################################################################
+        while(true) //while do combate
         {
-            System.out.println("\n" + adversarioGenerico.getNomeDoAdiversario() + "\n" + adversarioGenerico.getPontosDeVidaDoAdiversario() + "/" + adversarioGenerico.getVidaMaximaDoAdversario());
-            System.out.println("\n" + jogador.getNomeDoJogador() + "\n" + jogador.getPontosDeVidaDoJogador() + "/" + jogador.getVidaMaximaDoJogador() + "\n");
-            System.out.println("Pocoes do jogador: " + pocoesDoJogador.getQuantidadeDePocoes());
-            System.out.println("Pocoes do adversario: " + pocoesDoAdversario.getQuantidadeDePocoes());
-            System.out.printf("Armadura do jogador: %.0f\n", armadura.getValorDeArmadura());
-            System.out.println("Armadura do adversario: " + adversarioGenerico.getDefesaDoAdversario());
-            System.out.printf("Agilidade do jogador: %d\n", jogador.getAgilidadeDoJogador());
-            System.out.println("Agilidade do adversario: " + adversarioGenerico.getAgilidadeDoAdiversario());
-            System.out.println("1- Atacar  2- Defender  3- Usar pocao");
+            System.out.println("\n" + adversarioGenerico.getNomeDoAdversario());
+            System.out.println("Vida: " + adversarioGenerico.getPontosDeVidaDoAdversario() + "/" + adversarioGenerico.getVidaMaximaDoAdversario() + "\nPocoes: " + pocoesDoAdversario.getQuantidadeDePocoes() + "\nArmadura: " + adversarioGenerico.getDefesaDoAdversario() + "\nAgilidade: " + adversarioGenerico.getAgilidadeDoAdversario());
+            System.out.println("\n" + jogador.getNomeDoJogador());
+            System.out.println("Vida: " + jogador.getPontosDeVidaDoJogador() + "/" + jogador.getVidaMaximaDoJogador() + "\nPocoes: " + pocoesDoJogador.getQuantidadeDePocoes() + "\nArmadura: " + (int) armadura.getValorDeArmadura() + "\nAgilidade: " + jogador.getAgilidadeDoJogador());
+            System.out.println("\n1- Atacar  2- Defender  3- Usar pocao");
             escolhaDeAcaoDoJogador = input.nextInt();
             
             if(escolhaDeAcaoDoJogador == 4)
             {
-                System.out.println("\nCheat de aumentar vida");
-                vida = jogador.getVidaMaximaDoJogador();
+                System.out.println("\nCheat de aumentar vida\n");
+                vida = 999;
                 jogador.setPontosDeVidaDoJogador(vida);
+                jogador.setVidaMaximaDoJogador(vida);
             }
-            else if(escolhaDeAcaoDoJogador == 5)
+            if(escolhaDeAcaoDoJogador == 5)
             {
-                System.out.println("\nCheat de vencer combate");
-                return 1;
-                    
+                System.out.println("\nCheat de aumentar pocao\n");
+                pocoesDoJogador.setQuantidadeDePocoes(99);
             }
             else if(escolhaDeAcaoDoJogador == 6)
+            {
+                System.out.println("\nCheat para vencer combate\n");
+                return 1; 
+            }
+            else if(escolhaDeAcaoDoJogador == 7)
             {
                 System.out.println("\nSaindo...\n");
                 break;
             }
-            if(jogador.getAgilidadeDoJogador() > adversarioGenerico.getAgilidadeDoAdiversario()) //teste
+            if(jogador.getAgilidadeDoJogador() > adversarioGenerico.getAgilidadeDoAdversario())
             {
                 armadura.setValorDeArmadura(armaduraMaximaDoJogador);
                 if(escolhaDeAcaoDoJogador == 1)
@@ -350,13 +356,13 @@ public class SistemaDeCombate {
                     {
                         dano = 1;
                     }
-                    vida = adversarioGenerico.getPontosDeVidaDoAdiversario();
+                    vida = adversarioGenerico.getPontosDeVidaDoAdversario();
                             
                     vida -= dano;
-                    adversarioGenerico.setPontosDeVidaDoAdiversario(vida);
-                    System.out.println("Dano do jogador: " + dano);
+                    adversarioGenerico.setPontosDeVidaDoAdversario(vida);
+                    System.out.println("Dano: " + dano);
                             
-                    if(adversarioGenerico.getPontosDeVidaDoAdiversario() <= 0)
+                    if(adversarioGenerico.getPontosDeVidaDoAdversario() <= 0)
                     {
                         System.out.println("\nJogador venceu\n");
                         return 1;
@@ -364,34 +370,38 @@ public class SistemaDeCombate {
                 }
                 else if(escolhaDeAcaoDoJogador == 2)
                 {
-                    System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu defender! Sua Defesa dobrou!");
+                    System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu defender! \nSua Defesa dobrou!");
                     armadura.setValorDeArmadura(2*armadura.getValorDeArmadura());
                 }
                 else if(escolhaDeAcaoDoJogador == 3)
                 {
                     if(pocoesDoJogador.getQuantidadeDePocoes() <= 0)
                     {
-                        System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu usar uma pocao, mas elas ja acabaram");
+                        System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu usar uma pocao, mas elas ja acabaram...");
                     }
                     else
                     {    
                         System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu usar uma pocao!");
-                    }
-                    if(pocoesDoJogador.getQuantidadeDePocoes() >= 1)
-                    {
+                        
                         vida = jogador.getPontosDeVidaDoJogador();
+                        cura = pocoesDoJogador.getCura();
                         pocao = pocoesDoJogador.getQuantidadeDePocoes();
                               
-                        vida += pocoesDoJogador.getCura();
+                        vida += cura;
                         pocao--;
                               
                         pocoesDoJogador.setQuantidadeDePocoes(pocao);
-                        jogador.setPontosDeVidaDoJogador(vida);
-                                
-                        //caso o jogador cure a mais que a vida maxima
-                        if(jogador.getPontosDeVidaDoJogador() > jogador.getVidaMaximaDoJogador())
+                        
+                        if(vida > jogador.getVidaMaximaDoJogador())
                         {
+                            cura = jogador.getVidaMaximaDoJogador() - jogador.getPontosDeVidaDoJogador();
+                            System.out.println("Cura: " + cura);
                             jogador.setPontosDeVidaDoJogador(jogador.getVidaMaximaDoJogador());
+                        }
+                        else
+                        {
+                            System.out.println("Cura: " + cura);
+                            jogador.setPontosDeVidaDoJogador(vida);
                         }
                     }
                 }
@@ -401,17 +411,17 @@ public class SistemaDeCombate {
                 adversarioGenerico.setDefesaDoAdversario(defesaMaximaDoAdversario);
                 if(adversario_stun == true)
                 {
-                    System.out.println("\nO adversario esta stunado! Nao consegue se mover!");
+                    System.out.println("\nO adversario esta stunado! \nNao consegue se mover!");
                     adversario_stun = false;
                 }
                 else
                 {
                     if(escolhaDeAcaoDoAdversario == 0 || escolhaDeAcaoDoAdversario == 1 || escolhaDeAcaoDoAdversario == 2)
                     {
-                        System.out.println("\n" + adversarioGenerico.getNomeDoAdiversario() + " escolheu atacar!");
+                        System.out.println("\n" + adversarioGenerico.getNomeDoAdversario() + " escolheu atacar!");
 
                         dano = (int) (adversarioGenerico.getDanoDoAdversario() - armadura.getValorDeArmadura());
-                        if(adversarioGenerico.getNomeDoAdiversario() == "Kalameet" && armadura.getNomeDaArmadura() == "Armadura Matadora de Dragao")
+                        if(adversarioGenerico.getNomeDoAdversario() == "Kalameet" && armadura.getNomeDaArmadura() == "Armadura Matadora de Dragao")
                         {
                             dano = dano - 5;
                         }
@@ -424,7 +434,7 @@ public class SistemaDeCombate {
 
                         vida -= dano;
                         jogador.setPontosDeVidaDoJogador(vida);
-                        System.out.println("Dano do adversario: " + dano);
+                        System.out.println("Dano: " + dano);
 
                         if(jogador.getPontosDeVidaDoJogador() <= 0)
                         {
@@ -444,7 +454,7 @@ public class SistemaDeCombate {
                     }
                     else if(escolhaDeAcaoDoAdversario == 3 || escolhaDeAcaoDoAdversario == 4)
                     {
-                        System.out.println("\n" + adversarioGenerico.getNomeDoAdiversario() + " escolheu defender! Sua Defesa dobrou!");
+                        System.out.println("\n" + adversarioGenerico.getNomeDoAdversario() + " escolheu defender! \nSua Defesa dobrou!");
 
                         adversarioGenerico.setDefesaDoAdversario(2*adversarioGenerico.getDefesaDoAdversario());
                     }
@@ -452,50 +462,54 @@ public class SistemaDeCombate {
                     {
                         if(pocoesDoAdversario.getQuantidadeDePocoes() <= 0)
                         {
-                            System.out.println("\n" + adversarioGenerico.getNomeDoAdiversario() + " escolheu usar uma pocao, mas elas ja acabaram");
+                            System.out.println("\n" + adversarioGenerico.getNomeDoAdversario() + " escolheu usar uma pocao, mas elas ja acabaram...");
                         }
                         else
                         {    
-                            System.out.println("\n" + adversarioGenerico.getNomeDoAdiversario() + " escolheu usar uma pocao!");
-                        }
-
-                        if(pocoesDoAdversario.getQuantidadeDePocoes() >= 1)
-                        {
-                            vida = adversarioGenerico.getPontosDeVidaDoAdiversario();
+                            System.out.println("\n" + adversarioGenerico.getNomeDoAdversario() + " escolheu usar uma pocao!");
+                        
+                            vida = adversarioGenerico.getPontosDeVidaDoAdversario();
+                            cura = pocoesDoAdversario.getCura();
                             pocao = pocoesDoAdversario.getQuantidadeDePocoes();
 
-                            vida += pocoesDoAdversario.getCura();
+                            vida += cura;
                             pocao--;
 
                             pocoesDoAdversario.setQuantidadeDePocoes(pocao);
-                            adversarioGenerico.setPontosDeVidaDoAdiversario(vida);
 
-                            if(adversarioGenerico.getPontosDeVidaDoAdiversario() > adversarioGenerico.getVidaMaximaDoAdversario())
+                            if(vida > adversarioGenerico.getVidaMaximaDoAdversario())
                             {
-                                adversarioGenerico.setPontosDeVidaDoAdiversario(adversarioGenerico.getVidaMaximaDoAdversario());
+                                cura = adversarioGenerico.getVidaMaximaDoAdversario() - adversarioGenerico.getPontosDeVidaDoAdversario();
+                                System.out.println("Cura: " + cura);
+                                adversarioGenerico.setPontosDeVidaDoAdversario(adversarioGenerico.getVidaMaximaDoAdversario());
+                            }
+                            else
+                            {
+                                System.out.println("Cura: " + cura);
+                                adversarioGenerico.setPontosDeVidaDoAdversario(vida);
                             }
                         }
                     }
                 }//if-else stun
             }      
-            else if(adversarioGenerico.getAgilidadeDoAdiversario() > jogador.getAgilidadeDoJogador())
+            else if(adversarioGenerico.getAgilidadeDoAdversario() > jogador.getAgilidadeDoJogador())
             {
                 escolhaDeAcaoDoAdversario = gerador.nextInt(6);
                 
                 adversarioGenerico.setDefesaDoAdversario(defesaMaximaDoAdversario);
                 if(adversario_stun == true)
                 {
-                    System.out.println("\nO adversario esta stunado! Nao consegue se mover!");
+                    System.out.println("\nO adversario esta stunado! \nNao consegue se mover!");
                     adversario_stun = false;
                 }
                 else
                 {
                     if(escolhaDeAcaoDoAdversario == 0 || escolhaDeAcaoDoAdversario == 1 || escolhaDeAcaoDoAdversario == 2)
                     {
-                        System.out.println("\n" + adversarioGenerico.getNomeDoAdiversario() + " escolheu atacar!");
+                        System.out.println("\n" + adversarioGenerico.getNomeDoAdversario() + " escolheu atacar!");
 
                         dano = (int) (adversarioGenerico.getDanoDoAdversario() - armadura.getValorDeArmadura());
-                        if(adversarioGenerico.getNomeDoAdiversario() == "Kalameet" && armadura.getNomeDaArmadura() == "Armadura Matadora de Dragao")
+                        if(adversarioGenerico.getNomeDoAdversario() == "Kalameet" && armadura.getNomeDaArmadura() == "Armadura Matadora de Dragao")
                         {
                             dano = dano - 5;
                         }
@@ -507,7 +521,7 @@ public class SistemaDeCombate {
 
                         vida -= dano;
                         jogador.setPontosDeVidaDoJogador(vida);
-                        System.out.println("Dano do adversario: " + dano);
+                        System.out.println("Dano: " + dano);
 
                         if(jogador.getPontosDeVidaDoJogador() <= 0)
                         {
@@ -527,7 +541,7 @@ public class SistemaDeCombate {
                     }
                     else if(escolhaDeAcaoDoAdversario == 3 || escolhaDeAcaoDoAdversario == 4)
                     {
-                        System.out.println("\n" + adversarioGenerico.getNomeDoAdiversario() + " escolheu defender! Sua Defesa dobrou!");
+                        System.out.println("\n" + adversarioGenerico.getNomeDoAdversario() + " escolheu defender! \nSua Defesa dobrou!");
 
                         adversarioGenerico.setDefesaDoAdversario(2*adversarioGenerico.getDefesaDoAdversario());
                     }
@@ -535,27 +549,31 @@ public class SistemaDeCombate {
                     {
                         if(pocoesDoAdversario.getQuantidadeDePocoes() <= 0)
                         {
-                            System.out.println("\n" + adversarioGenerico.getNomeDoAdiversario() + " escolheu usar uma pocao, mas elas ja acabaram");
+                            System.out.println("\n" + adversarioGenerico.getNomeDoAdversario() + " escolheu usar uma pocao, mas elas ja acabaram...");
                         }
                         else
                         {    
-                            System.out.println("\n" + adversarioGenerico.getNomeDoAdiversario() + " escolheu usar uma pocao!");
-                        }
-
-                        if(pocoesDoAdversario.getQuantidadeDePocoes() >= 1)
-                        {
-                            vida = adversarioGenerico.getPontosDeVidaDoAdiversario();
+                            System.out.println("\n" + adversarioGenerico.getNomeDoAdversario() + " escolheu usar uma pocao!");
+                        
+                            vida = adversarioGenerico.getPontosDeVidaDoAdversario();
+                            cura = pocoesDoAdversario.getCura();
                             pocao = pocoesDoAdversario.getQuantidadeDePocoes();
 
-                            vida += pocoesDoAdversario.getCura();
+                            vida += cura;
                             pocao--;
 
                             pocoesDoAdversario.setQuantidadeDePocoes(pocao);
-                            adversarioGenerico.setPontosDeVidaDoAdiversario(vida);
 
-                            if(adversarioGenerico.getPontosDeVidaDoAdiversario() > adversarioGenerico.getVidaMaximaDoAdversario())
+                            if(vida > adversarioGenerico.getVidaMaximaDoAdversario())
                             {
-                                adversarioGenerico.setPontosDeVidaDoAdiversario(adversarioGenerico.getVidaMaximaDoAdversario());
+                                cura = adversarioGenerico.getVidaMaximaDoAdversario() - adversarioGenerico.getPontosDeVidaDoAdversario();
+                                System.out.println("Cura: " + cura);
+                                adversarioGenerico.setPontosDeVidaDoAdversario(adversarioGenerico.getVidaMaximaDoAdversario());
+                            }
+                            else
+                            {
+                                System.out.println("Cura: " + cura);
+                                adversarioGenerico.setPontosDeVidaDoAdversario(vida);
                             }
                         }
                     }
@@ -577,13 +595,13 @@ public class SistemaDeCombate {
                     {
                         dano = 1;
                     }
-                    vida = adversarioGenerico.getPontosDeVidaDoAdiversario();
+                    vida = adversarioGenerico.getPontosDeVidaDoAdversario();
                             
                     vida -= dano;
-                    adversarioGenerico.setPontosDeVidaDoAdiversario(vida);
-                    System.out.println("Dano do jogador: " + dano);
+                    adversarioGenerico.setPontosDeVidaDoAdversario(vida);
+                    System.out.println("Dano: " + dano);
                             
-                    if(adversarioGenerico.getPontosDeVidaDoAdiversario() <= 0)
+                    if(adversarioGenerico.getPontosDeVidaDoAdversario() <= 0)
                     {
                         System.out.println("\nJogador venceu\n");
                         return 1;
@@ -591,40 +609,44 @@ public class SistemaDeCombate {
                 }
                 else if(escolhaDeAcaoDoJogador == 2)
                 {
-                    System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu defender! Sua Defesa dobrou!");
+                    System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu defender! \nSua Defesa dobrou!");
                     armadura.setValorDeArmadura(2*armadura.getValorDeArmadura());
                 }
                 else if(escolhaDeAcaoDoJogador == 3)
                 {   
                     if(pocoesDoJogador.getQuantidadeDePocoes() <= 0)
                     {
-                        System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu usar uma pocao, mas elas ja acabaram");
+                        System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu usar uma pocao, mas elas ja acabaram...");
                     }
                     else
                     {    
                         System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu usar uma pocao!");
-                    }
-                    if(pocoesDoJogador.getQuantidadeDePocoes() >= 1)
-                    {
+                        
                         vida = jogador.getPontosDeVidaDoJogador();
+                        cura = pocoesDoJogador.getCura();
                         pocao = pocoesDoJogador.getQuantidadeDePocoes();
                               
-                        vida += pocoesDoJogador.getCura();
+                        vida += cura;
                         pocao--;
                               
                         pocoesDoJogador.setQuantidadeDePocoes(pocao);
-                        jogador.setPontosDeVidaDoJogador(vida);
-                                
-                        //caso o jogador cure a mais que a vida maxima
-                        if(jogador.getPontosDeVidaDoJogador() > jogador.getVidaMaximaDoJogador())
+                        
+                        if(vida > jogador.getVidaMaximaDoJogador())
                         {
+                            cura = jogador.getVidaMaximaDoJogador() - jogador.getPontosDeVidaDoJogador();
+                            System.out.println("Cura: " + cura);
                             jogador.setPontosDeVidaDoJogador(jogador.getVidaMaximaDoJogador());
+                        }
+                        else
+                        {
+                            System.out.println("Cura: " + cura);
+                            jogador.setPontosDeVidaDoJogador(vida);
                         }
                     }
                 }
             } //if-else agilidade        
             
-        } //while do combate#####################################################################################
+        } //while do combate
         
         return 0;
     }
@@ -635,7 +657,6 @@ public class SistemaDeCombate {
         int totalDePontos = pontos;
         int pontoDestribuidoParaUmAtributo;
         
-        System.out.println("\nLevel Up!!!");
         System.out.println("\nDestribua pontos de atributo\n");
         
         while(true)
@@ -645,7 +666,7 @@ public class SistemaDeCombate {
          
             pontoDestribuidoParaUmAtributo = input.nextInt();
             
-            if(pontoDestribuidoParaUmAtributo <= totalDePontos)
+            if(pontoDestribuidoParaUmAtributo <= totalDePontos && pontoDestribuidoParaUmAtributo >= 0)
             {
                 jogador.setForcaDoJogador(pontoDestribuidoParaUmAtributo + jogador.getForcaDoJogador());
                 break;
@@ -663,7 +684,7 @@ public class SistemaDeCombate {
 
                 pontoDestribuidoParaUmAtributo = input.nextInt();
                 
-                if(pontoDestribuidoParaUmAtributo <= totalDePontos)
+                if(pontoDestribuidoParaUmAtributo <= totalDePontos && pontoDestribuidoParaUmAtributo >= 0)
                 {
                     jogador.setConstituicaoDoJogador(pontoDestribuidoParaUmAtributo + jogador.getConstituicaoDoJogador());
                     break;
@@ -681,7 +702,7 @@ public class SistemaDeCombate {
                 System.out.printf("Agilidade: ");
 
                 pontoDestribuidoParaUmAtributo = input.nextInt();
-                if(pontoDestribuidoParaUmAtributo <= totalDePontos)
+                if(pontoDestribuidoParaUmAtributo <= totalDePontos && pontoDestribuidoParaUmAtributo >= 0)
                 {
                     jogador.setAgilidadeDoJogador(pontoDestribuidoParaUmAtributo + jogador.getAgilidadeDoJogador());
                     break;
@@ -698,7 +719,7 @@ public class SistemaDeCombate {
                 System.out.printf("Destreza: ");
 
                 pontoDestribuidoParaUmAtributo = input.nextInt();
-                if(pontoDestribuidoParaUmAtributo <= totalDePontos)
+                if(pontoDestribuidoParaUmAtributo <= totalDePontos && pontoDestribuidoParaUmAtributo >= 0)
                 {
                     jogador.setDestrezaDoJogador(pontoDestribuidoParaUmAtributo + jogador.getDestrezaDoJogador());
                     break;
@@ -824,7 +845,6 @@ public class SistemaDeCombate {
                     System.out.println("\nOtima defesa, porem bem pesada (perdeu 2 de agilidade)");
 
                     jogador.setAgilidadeDoJogador(jogador.getAgilidadeDoJogador() - 2);
-
                 }
                 
                 armaduraDoJogador.setConstanteDeDefesa(armaduraGenerica3.getConstanteDeDefesa());
