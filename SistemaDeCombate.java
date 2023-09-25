@@ -157,7 +157,6 @@ public class SistemaDeCombate {
                 jogador.setNomeDoJogador(nomeDoJogador);
                 System.out.println("Bem vindo, " + jogador.getNomeDoJogador() + "\n");
                 
-                
                 for(int i = 0; i < 3; i++) 
                 {
                     rolagemDeVida = gerador.nextInt(6) + 1;
@@ -326,7 +325,7 @@ public class SistemaDeCombate {
             }
             else if(escolhaDeAcaoDoJogador == 6)
             {
-                System.out.println("\nCheat para vencer combate\n");
+                System.out.println("\n" + jogador.getNomeDoJogador() + " venceu!!!\n");
                 return 1; 
             }
             else if(escolhaDeAcaoDoJogador == 7)
@@ -360,7 +359,7 @@ public class SistemaDeCombate {
                             
                     if(adversarioGenerico.getPontosDeVidaDoAdversario() <= 0)
                     {
-                        System.out.println("\nJogador venceu\n");
+                        System.out.println("\n" + jogador.getNomeDoJogador() + " venceu!!!\n");
                         return 1;
                     }
                 }
@@ -599,7 +598,7 @@ public class SistemaDeCombate {
                             
                     if(adversarioGenerico.getPontosDeVidaDoAdversario() <= 0)
                     {
-                        System.out.println("\nJogador venceu\n");
+                        System.out.println("\n" + jogador.getNomeDoJogador() + " venceu!!!\n");
                         return 1;
                     }
                 }
