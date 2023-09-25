@@ -262,8 +262,8 @@ public class SistemaDeCombate {
                 System.out.println(arma2.getNomeDaArma() + ": K = " + arma2.getConstanteDeDano());
                 System.out.println(arma3.getNomeDaArma() + ": K = " + arma3.getConstanteDeDano());
                 System.out.println(arma4.getNomeDaArma() + ": K = " + arma4.getConstanteDeDano());
-                System.out.println(arma5.getNomeDaArma() + ": K = " + arma5.getConstanteDeDano());
-                System.out.println(arma6.getNomeDaArma() + ": K = " + arma6.getConstanteDeDano());
+                System.out.println(arma5.getNomeDaArma() + ": K = " + arma5.getConstanteDeDano() + " Habilidade especial: Frostbyte (causa dano adicional após atacar quatro vezes (+7) e diminui o dano do oponente por um turno (-15)");
+                System.out.println(arma6.getNomeDaArma() + ": K = " + arma6.getConstanteDeDano() + " Habilidade especial: Sangramento (causa dano adicional após atacar tres vezes (+10)");
                 System.out.println("\nArmaduras");
                 System.out.println(armadura2.getNomeDaArmadura() + ": K = " + (int) armadura2.getConstanteDeDefesa());
                 System.out.println(armadura3.getNomeDaArmadura() + ": K = " + (int) armadura3.getConstanteDeDefesa());
@@ -301,6 +301,9 @@ public class SistemaDeCombate {
         int pocao;
         int stun = 0;
         boolean adversario_stun = false;
+        int sangramento = 0;
+        int frostbyte = 0;
+        boolean adversario_frostbyte = false;
         
         while(true) //while do combate
         {
@@ -342,10 +345,32 @@ public class SistemaDeCombate {
                     if(arma.getCategoriaDaArma() == 1)
                     {
                         dano = (int) (arma.getConstanteDeDano() + gerador.nextInt(8) + 1 + gerador.nextInt(8) + 1 + gerador.nextInt(6) + 1 + jogador.getDestrezaDoJogador() - adversarioGenerico.getDefesaDoAdversario());
+                        
+                        if(arma.getNomeDaArma() == "Rivers of Blood (Leve)")
+                        {
+                            sangramento++;
+                            if(sangramento >= 3)
+                            {
+                                dano+=10;
+                                sangramento = 0;
+                                System.out.println("O adversario sofreu +10 de dano por Sangramento!");
+                            }
+                        }    
                     }
                     else
                     {
                         dano = (int) (arma.getConstanteDeDano() + gerador.nextInt(12) + 1 + 1.5*jogador.getForcaDoJogador() - adversarioGenerico.getDefesaDoAdversario());
+                        if(arma.getNomeDaArma() == "Moonlight Greatsword (Pesada)")
+                        {
+                            frostbyte++;
+                            if(frostbyte >= 4)
+                            {
+                                dano+=7;
+                                frostbyte = 0;
+                                adversario_frostbyte = true;
+                                System.out.println("O adversario sofreu +7 de dano por frostbyte! e seu dano foi reduzido para o proximo turno!");
+                            }
+                        }
                     }
                     if(dano <= 0)
                     {
@@ -420,6 +445,12 @@ public class SistemaDeCombate {
                         {
                             dano = dano - 5;
                         }
+                        if(adversario_frostbyte == true)
+                        {
+                            dano = dano - 15;
+                            adversario_frostbyte = false;
+                            System.out.println("Dano de " + adversarioGenerico.getNomeDoAdversario() + " reduzido para esse ataque! (-15)");
+                        }
                         if(dano <= 0)
                         {
                             dano = 1;
@@ -450,11 +481,19 @@ public class SistemaDeCombate {
                     else if(escolhaDeAcaoDoAdversario == 3 || escolhaDeAcaoDoAdversario == 4)
                     {
                         System.out.println("\n" + adversarioGenerico.getNomeDoAdversario() + " escolheu defender! \nSua Defesa dobrou!");
+                        if(adversario_frostbyte == true)
+                        {
+                            adversario_frostbyte = false;
+                        }
 
                         adversarioGenerico.setDefesaDoAdversario(2*adversarioGenerico.getDefesaDoAdversario());
                     }
                     else if(escolhaDeAcaoDoAdversario == 5)
                     {
+                        if(adversario_frostbyte == true)
+                        {
+                            adversario_frostbyte = false;
+                        }
                         if(pocoesDoAdversario.getQuantidadeDePocoes() <= 0)
                         {
                             System.out.println("\n" + adversarioGenerico.getNomeDoAdversario() + " escolheu usar uma pocao, mas elas ja acabaram...");
@@ -508,6 +547,12 @@ public class SistemaDeCombate {
                         {
                             dano = dano - 5;
                         }
+                        if(adversario_frostbyte == true)
+                        {
+                            dano = dano - 15;
+                            adversario_frostbyte = false;
+                            System.out.println("Dano de " + adversarioGenerico.getNomeDoAdversario() + " reduzido para esse ataque! (-15)");
+                        }
                         if(dano <= 0)
                         {
                             dano = 1;
@@ -539,12 +584,21 @@ public class SistemaDeCombate {
                         System.out.println("\n" + adversarioGenerico.getNomeDoAdversario() + " escolheu defender! \nSua Defesa dobrou!");
 
                         adversarioGenerico.setDefesaDoAdversario(2*adversarioGenerico.getDefesaDoAdversario());
+                        if(adversario_frostbyte == true)
+                        {
+                            adversario_frostbyte = false;
+                        }
                     }
                     else if(escolhaDeAcaoDoAdversario == 5)
                     {
+                        if(adversario_frostbyte == true)
+                        {
+                            adversario_frostbyte = false;
+                        }
                         if(pocoesDoAdversario.getQuantidadeDePocoes() <= 0)
                         {
                             System.out.println("\n" + adversarioGenerico.getNomeDoAdversario() + " escolheu usar uma pocao, mas elas ja acabaram...");
+                            
                         }
                         else
                         {    
@@ -581,10 +635,31 @@ public class SistemaDeCombate {
                     if(arma.getCategoriaDaArma() == 1)
                     {
                         dano = (int) (arma.getConstanteDeDano() + gerador.nextInt(6) + 1 + gerador.nextInt(6) + 1 + gerador.nextInt(4) + 1 + jogador.getDestrezaDoJogador() - adversarioGenerico.getDefesaDoAdversario());
+                        if(arma.getNomeDaArma() == "Rivers of Blood (Leve)")
+                        {
+                            sangramento++;
+                            if(sangramento >= 3)
+                            {
+                                dano+=10;
+                                sangramento = 0;
+                                System.out.println("O adversario sofreu +10 de dano por Sangramento!");
+                            }
+                        }
                     }
                     else
                     {
                         dano = (int) (arma.getConstanteDeDano() + gerador.nextInt(12) + 1 + 1.5*jogador.getForcaDoJogador() - adversarioGenerico.getDefesaDoAdversario());
+                        if(arma.getNomeDaArma() == "Moonlight Greatsword (Pesada)")
+                        {
+                            frostbyte++;
+                            if(frostbyte >= 4)
+                            {
+                                dano+=7;
+                                frostbyte = 0;
+                                adversario_frostbyte = true;
+                                System.out.println("O adversario sofreu +7 de dano por frostbyte! e seu dano foi reduzido para o proximo turno!");
+                            }
+                        }
                     }
                     if(dano <= 0)
                     {
@@ -765,16 +840,25 @@ public class SistemaDeCombate {
             }
             else if(escolhaDeArma == 2)
             {
-                System.out.println("\n" + armaGenerica2.getNomeDaArma() + " selecionada.");
                 armaDoJogador.setNomeDaArma(armaGenerica2.getNomeDaArma());
+                System.out.println("\n" + armaGenerica2.getNomeDaArma() + " selecionada."); 
                 armaDoJogador.setCategoriaDaArma(armaGenerica2.getCategoriaDaArma());
                 armaDoJogador.setConstanteDeDano(armaGenerica2.getConstanteDeDano());
+                if(armaDoJogador.getNomeDaArma() == "Moonlight Greatsword (Pesada)")
+                {
+                    System.out.println("Habilidade especial: Frostbyte (causa dano adicional após atacar quatro vezes (+7) e diminui o dano do oponente por um turno (-15)");
+                }    
                 break;
             }
             else if(escolhaDeArma == 3)
             {
+                armaDoJogador.setNomeDaArma(armaGenerica3.getNomeDaArma());   
                 System.out.println("\n" + armaGenerica3.getNomeDaArma() + " selecionada.");
-                armaDoJogador.setNomeDaArma(armaGenerica3.getNomeDaArma());
+                if(armaDoJogador.getNomeDaArma() == "Rivers of Blood (Leve)")
+                {
+                    System.out.println("Habilidade especial: Sangramento (causa dano adicional após atacar tres vezes)");
+                }
+                
                 armaDoJogador.setCategoriaDaArma(armaGenerica3.getCategoriaDaArma());
                 armaDoJogador.setConstanteDeDano(armaGenerica3.getConstanteDeDano());
                 break;
