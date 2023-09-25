@@ -379,7 +379,7 @@ public class SistemaDeCombate {
                         System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu usar uma pocao!");
                         
                         vida = jogador.getPontosDeVidaDoJogador();
-                        cura = pocoesDoJogador.getCura();
+                        cura = pocoesDoJogador.getValorDeCura();
                         pocao = pocoesDoJogador.getQuantidadeDePocoes();
                               
                         vida += cura;
@@ -464,7 +464,7 @@ public class SistemaDeCombate {
                             System.out.println("\n" + adversarioGenerico.getNomeDoAdversario() + " escolheu usar uma pocao!");
                         
                             vida = adversarioGenerico.getPontosDeVidaDoAdversario();
-                            cura = pocoesDoAdversario.getCura();
+                            cura = pocoesDoAdversario.getValorDeCura();
                             pocao = pocoesDoAdversario.getQuantidadeDePocoes();
 
                             vida += cura;
@@ -551,7 +551,7 @@ public class SistemaDeCombate {
                             System.out.println("\n" + adversarioGenerico.getNomeDoAdversario() + " escolheu usar uma pocao!");
                         
                             vida = adversarioGenerico.getPontosDeVidaDoAdversario();
-                            cura = pocoesDoAdversario.getCura();
+                            cura = pocoesDoAdversario.getValorDeCura();
                             pocao = pocoesDoAdversario.getQuantidadeDePocoes();
 
                             vida += cura;
@@ -618,7 +618,7 @@ public class SistemaDeCombate {
                         System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu usar uma pocao!");
                         
                         vida = jogador.getPontosDeVidaDoJogador();
-                        cura = pocoesDoJogador.getCura();
+                        cura = pocoesDoJogador.getValorDeCura();
                         pocao = pocoesDoJogador.getQuantidadeDePocoes();
                               
                         vida += cura;
