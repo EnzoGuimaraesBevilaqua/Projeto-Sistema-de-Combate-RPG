@@ -154,10 +154,6 @@ public class SistemaDeCombate {
                 System.out.printf("\nInsira seu nome: ");
                 nomeDoJogador = input.next();
                 
-                if(nomeDoJogador.length() > 7)
-                {
-                    continue;
-                }
                 jogador.setNomeDoJogador(nomeDoJogador);
                 System.out.println("Bem vindo, " + jogador.getNomeDoJogador() + "\n");
                 
