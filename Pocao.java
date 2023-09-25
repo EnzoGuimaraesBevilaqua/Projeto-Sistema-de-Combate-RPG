@@ -7,7 +7,8 @@ public class Pocao {
     Random gerador = new Random();
     
     private int quantidadeDePocoes;
-    private int cura;
+    private int valorDeCura;
+    private int rolagemDevalorDeCura;
     
     public void setQuantidadeDePocoes(int quantidadeDePocoes)
     {
@@ -19,12 +20,14 @@ public class Pocao {
         return this.quantidadeDePocoes;
     }
     
-    public int getCura()
+    public int getValorDeCura()
     {
+        valorDeCura = 0;
         for (int i = 0; i < 3; i++)
         {
-            cura += gerador.nextInt(6) + 1;
+            rolagemDevalorDeCura = gerador.nextInt(6) + 1;
+            valorDeCura += rolagemDevalorDeCura;
         }
-        return cura;
+        return valorDeCura;
     }
 }
