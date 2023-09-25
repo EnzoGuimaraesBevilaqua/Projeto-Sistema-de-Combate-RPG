@@ -806,9 +806,9 @@ public class SistemaDeCombate {
                 
                 if(armaduraDoJogador.getNomeDaArmadura() == "Armadura Matadora de Dragao")
                 {
-                    System.out.println("\nBoa defesa, porem pesada (perdeu 2 de agilidade)");
+                    System.out.println("\nBoa defesa, porem pesada (perdeu 1 de agilidade)");
                      
-                    jogador.setAgilidadeDoJogador(jogador.getAgilidadeDoJogador() - 2);
+                    jogador.setAgilidadeDoJogador(jogador.getAgilidadeDoJogador() - 1);
                 }
                 
                 armaduraDoJogador.setConstanteDeDefesa(armaduraGenerica2.getConstanteDeDefesa());
@@ -821,9 +821,9 @@ public class SistemaDeCombate {
                 
                 if(armaduraDoJogador.getNomeDaArmadura() == "Armadura de Berserk")
                 {
-                    System.out.println("\nOtima defesa, porem bem pesada (perdeu 4 de agilidade)");
+                    System.out.println("\nOtima defesa, porem bem pesada (perdeu 2 de agilidade)");
 
-                    jogador.setAgilidadeDoJogador(jogador.getAgilidadeDoJogador() - 4);
+                    jogador.setAgilidadeDoJogador(jogador.getAgilidadeDoJogador() - 2);
 
                 }
                 
