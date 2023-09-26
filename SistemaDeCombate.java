@@ -519,6 +519,7 @@ public class SistemaDeCombate {
                         if(jogador.getPontosDeVidaDoJogador() <= 0)
                         {
                             System.out.println("\nGAME OVER\n");
+                            System.out.println("\nVoce falhou em sua missao e o dragao destruiu o vilarejo...\n");
                             return 0;
                         }
 
@@ -620,6 +621,7 @@ public class SistemaDeCombate {
                         if(jogador.getPontosDeVidaDoJogador() <= 0)
                         {
                             System.out.println("\nGAME OVER\n");
+                            System.out.println("\nVoce falhou em sua missao e o dragao destruiu o vilarejo...\n");
                             return 0;
                         }
 
