@@ -25,6 +25,10 @@ O personagem do jogo contém os seguintes atributos:
 
 ## Venha se aventurar no mundo de DragonBane!!!
 
+##ASCII ART
+
+###Foi utilizado uma ASCII ART em nosso jogo. Créditos: Tua Xiong
+
 ## Participantes
 
 ### Enzo Guimarães Bevilaqua
