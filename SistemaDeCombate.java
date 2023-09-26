@@ -224,7 +224,7 @@ public class SistemaDeCombate {
                         if(vitoria == 1)
                         {
                             victory();
-                            System.out.println("Apos eras, finalmente Kalameet foi derrotado.\n");
+                            System.out.println("\nApos eras, Kalameet foi finalmente derrotado!\n");
                             System.out.println("Seu olhar feroz que assustava todos que ousavam o desafiar nao surtiu efeito no corajoso heroi!\n");
                             System.out.println("Aquele que trouxe paz ao mundo...\n");
                             System.out.println("VIVA AO MAIOR HEROI DE TODOS OS TEMPOS: " + jogador.getNomeDoJogador() + "!!!\n");
@@ -380,7 +380,6 @@ public class SistemaDeCombate {
             }
             else if(escolhaDeAcaoDoJogador == 7)
             {
-                System.out.println("\nSaindo...\n");
                 break;
             }
             if(jogador.getAgilidadeDoJogador() > adversarioGenerico.getAgilidadeDoAdversario())
@@ -1001,7 +1000,7 @@ public class SistemaDeCombate {
     }
     public static void gameOver()
     {
-        System.out.println("                                                         /===-_---~~~~~~~~~------____");
+        System.out.println("\n                                                         /===-_---~~~~~~~~~------____");
         System.out.println("                                                        |===-~___                _,-'");
         System.out.println("                         -==\\\\                         `//~\\\\   ~~~~`---.___.-~~");
         System.out.println("                     ______-==|                         | |  \\\\           _-~`");
@@ -1012,19 +1011,19 @@ public class SistemaDeCombate {
         System.out.println("        /-'~    ~~~~~---__  |     ~-/~         ( )   /'        _--~`");
         System.out.println("                          \\_|      /        _)   ;  ),   __--~~");
         System.out.println("                            '~~--_/      _-~/-  / \\   '-~ \\");
-        System.out.println("                           {\\__--_/}    / \\\\_&gt;- )&lt;__\\      \\");
-        System.out.println("                           /'   (_/  _-~  | |__&gt;--&lt;__|      |");
-        System.out.println("                          |0  0 _/) )-~     | |__&gt;--&lt;__|     |");
-        System.out.println("                          / /~ ,_/       / /__&gt;---&lt;__/      |");
-        System.out.println("                         o o _//        /-~_&gt;---&lt;__-~|      /");
-        System.out.println("                         (^(~          /~_&gt;---&lt;__-/      _-~");
-        System.out.println("                        ,/|           |~_&gt;---&lt;__-|     _-~");
-        System.out.println("                     ,//('(           \\~_&gt;---&lt;__-\\   _-~");
-        System.out.println("                    ( ( '))           \\~_&gt;---&lt;__-_-~~");
-        System.out.println("                 `-)) )) (             \\~_&gt;---&lt;__-~");
-        System.out.println("                ,/,'//( (               ////&gt--&lt////");
-        System.out.println("              ,( ( ((, ))              ///,        ///,");
-        System.out.println("            `~/  )` ) ,/|");
+        System.out.println("                           {\\__--_/}    / \\\\_&gt;- )&lt;__\\       \\");
+        System.out.println("                           /'   (_/  _-~  | |__&gt;--&lt;__|       |");
+        System.out.println("                          |0  0 _/) )-~   | |__&gt;--&lt;__|       |");
+        System.out.println("                          / /~ ,_/       / /__&gt;---&lt;__/       |");
+        System.out.println("                         o o _//        /-~_&gt;---&lt;__-/       //");
+        System.out.println("                         (^(~          /~_&gt;---&lt;__-/      _-~/");
+        System.out.println("                        ,/|           |~_&gt;---&lt;__-|     _-~/");
+        System.out.println("                     ,//('(           \\~_&gt;---&lt;__-\\   _-~/");
+        System.out.println("                    ( ( '))           \\~_&gt;---&lt;__-_-~~//");
+        System.out.println("                 `-)) )) (             \\~_&gt;---&lt;__-~//");
+        System.out.println("                ,/,'//( (               ////&gt--&lt/////");
+        System.out.println("              ,( ( ((, ))               ////        ////");
+        System.out.println("            `~/  )` ) ,/|             (((  ,      (((  ,");
         System.out.println("          ._-~//( )/ )) `");
         System.out.println("           ;'( ')/ ,)(  ");
         System.out.println("          ' ') '( (/");
@@ -1039,7 +1038,8 @@ public class SistemaDeCombate {
         System.out.println("; '/__\\,.--';|   |[] .-.| O{ _ }");
         System.out.println(":' |  | []  -|   ''--:.;[,.'\\,/");
         System.out.println("'  |[]|,.--'' '',   ''-,.    |");
-        System.out.println("  ..    ..-''    ;       ''. '");
+        System.out.println("  ..    ..-''    ;       ''. '\n");
+        System.out.println("\nVoce falhou em sua missao e o dragao destruiu o vilarejo...\n");
     }
     public static void victory()
     {
