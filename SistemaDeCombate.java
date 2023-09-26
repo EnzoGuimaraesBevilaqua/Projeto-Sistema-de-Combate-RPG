@@ -44,6 +44,7 @@ public class SistemaDeCombate {
         int rolagemDeVida = 0;
         int adversarioSelecionado;
         int vitoria = 0;
+        int confirmacao = 0;
         
         adversario1.setNomeDoAdversario("Golem");
         adversario1.setPontosDeVidaDoAdversario(20);
@@ -146,7 +147,8 @@ public class SistemaDeCombate {
             System.out.println("1- Comecar");
             System.out.println("2- Historia");
             System.out.println("3- Equipamentos");
-            System.out.println("4- Sair");
+            System.out.println("4- Creditos");
+            System.out.println("5- Sair");
             escolhaInicial = input.nextInt();
 
             if(escolhaInicial == 1)
@@ -221,6 +223,7 @@ public class SistemaDeCombate {
                         
                         if(vitoria == 1)
                         {
+                            victory();
                             System.out.println("Apos eras, finalmente Kalameet foi derrotado.\n");
                             System.out.println("Seu olhar feroz que assustava todos que ousavam o desafiar nao surtiu efeito no corajoso heroi!\n");
                             System.out.println("Aquele que trouxe paz ao mundo...\n");
@@ -229,16 +232,19 @@ public class SistemaDeCombate {
                         }
                         else
                         {
+                            gameOver();
                             break;
                         }
                     }
                     else
                     {
+                        gameOver();
                         break;
                     }
                 }
                 else
                 {
+                    gameOver();
                     break;
                 }
             }
@@ -271,9 +277,16 @@ public class SistemaDeCombate {
                 System.out.println(armadura5.getNomeDaArmadura() + ": K = " + (int) armadura5.getConstanteDeDefesa() + " Nerf de Agilidade: -1 Habilidade especial: Concede resistencia aos ataques de dragoes (-5)");
                 System.out.println(armadura6.getNomeDaArmadura() + ": K = " + (int) armadura6.getConstanteDeDefesa() + " Nerf de Agilidade: -2");
                 System.out.println("\nVoltar ao menu (1)");
-                int confirmacao = input.nextInt();
-            }    
+                confirmacao = input.nextInt();
+            }
             else if(escolhaInicial == 4)
+            {
+                System.out.println("\nCriadores: Antonio Lucas e Enzo Guimaraes\n");
+                System.out.println("\nASCII ARTs: Tua Xiong (Dragao vs Cavaleiro), Steven Maddison (Small Village)\n");
+                System.out.println("\nVoltar ao menu (1)");
+                confirmacao = input.nextInt();
+            }
+            else if(escolhaInicial == 5)
             {
                 System.out.println("\nSaindo...\n");
                 break;
@@ -306,12 +319,35 @@ public class SistemaDeCombate {
         boolean adversario_frostbyte = false;
         
         while(true) //while do combate
-        {
+        {   
+            if(adversarioGenerico.getNomeDoAdversario() == "Kalameet")
+            {
+                System.out.println("\n                                               _   __,----'~~~~~~~~~`-----.__");
+                System.out.println("                                        .  .    `//====-              ____,-'~`");
+                System.out.println("                        -.            \\_|// .   /||\\\\  `~~~~`---.___./");
+                System.out.println("                  ______-==.       _-~o  `\\/    |||  \\\\           _,'`");
+                System.out.println("            __,--'   ,=='||\\=_    ;_,_,/ _-'|-   |`\\   \\\\        ,'");
+                System.out.println("         _-'      ,='    | \\\\`.    '',/~7  /-   /  ||   `\\.     /");
+                System.out.println("       .'       ,'       |  \\\\  \\_  \"  /  /-   /   ||      \\   /");
+                System.out.println("      / _____  /         |     \\\\.`-_/  /|- _/   ,||       \\ /");
+                System.out.println("     ,-'     `-|--'~~`--_ \\     `==-/  `| \\'--===-'       _/`");
+                System.out.println("               '         `-|      /|    )-'\\~'      _,--\"'");
+                System.out.println("                           '-~^\\_/ |    |   `\\_   ,^             /\\");
+                System.out.println("                                /  \\     \\__   \\/~               `\\__");
+                System.out.println("                            _,-' _/'\\ ,-'~____-'`-/                 ``===\\");
+                System.out.println("                           ((->/'    \\|||' `.     `\\.  ,                _||");
+                System.out.println("             ./                       \\_     `\\      `~---|__i__i__\\--~'_/");
+                System.out.println("            <_n_                     __-^-_    `)  \\-.______________,-~'");
+                System.out.println("             `B'\\)                  ///,-'~`__--^-  |-------~~~~^'");
+                System.out.println("             /^>                           ///,--~`-\\");
+                System.out.println("            `  `                                       ");
+            }
             System.out.println("\n" + adversarioGenerico.getNomeDoAdversario());
             System.out.println("Vida: " + adversarioGenerico.getPontosDeVidaDoAdversario() + "/" + adversarioGenerico.getVidaMaximaDoAdversario() + "\nPocoes: " + pocoesDoAdversario.getQuantidadeDePocoes() + "\nArmadura: " + adversarioGenerico.getDefesaDoAdversario() + "\nAgilidade: " + adversarioGenerico.getAgilidadeDoAdversario());
             System.out.println("\n" + jogador.getNomeDoJogador());
             System.out.println("Vida: " + jogador.getPontosDeVidaDoJogador() + "/" + jogador.getVidaMaximaDoJogador() + "\nPocoes: " + pocoesDoJogador.getQuantidadeDePocoes() + "\nArmadura: " + (int) armadura.getValorDeArmadura() + "\nAgilidade: " + jogador.getAgilidadeDoJogador());
             System.out.println("\n1- Atacar  2- Defender  3- Usar pocao");
+            
             escolhaDeAcaoDoJogador = input.nextInt();
             
             if(escolhaDeAcaoDoJogador == 4)
@@ -351,7 +387,7 @@ public class SistemaDeCombate {
                             sangramento++;
                             if(sangramento >= 3)
                             {
-                                dano+=10;
+                                dano += 10;
                                 sangramento = 0;
                                 System.out.println("O adversario sofreu +10 de dano por Sangramento!");
                             }
@@ -365,10 +401,10 @@ public class SistemaDeCombate {
                             frostbyte++;
                             if(frostbyte >= 4)
                             {
-                                dano+=7;
+                                dano += 7;
                                 frostbyte = 0;
                                 adversario_frostbyte = true;
-                                System.out.println("O adversario sofreu +7 de dano por frostbyte! e seu dano foi reduzido para o proximo turno!");
+                                System.out.println("O adversario sofreu +7 de dano por frostbyte e seu dano foi reduzido para o proximo turno!");
                             }
                         }
                     }
@@ -640,7 +676,7 @@ public class SistemaDeCombate {
                             sangramento++;
                             if(sangramento >= 3)
                             {
-                                dano+=10;
+                                dano += 10;
                                 sangramento = 0;
                                 System.out.println("O adversario sofreu +10 de dano por Sangramento!");
                             }
@@ -654,10 +690,10 @@ public class SistemaDeCombate {
                             frostbyte++;
                             if(frostbyte >= 4)
                             {
-                                dano+=7;
+                                dano += 7;
                                 frostbyte = 0;
                                 adversario_frostbyte = true;
-                                System.out.println("O adversario sofreu +7 de dano por frostbyte! e seu dano foi reduzido para o proximo turno!");
+                                System.out.println("O adversario sofreu +7 de dano por frostbyte e seu dano foi reduzido para o proximo turno!");
                             }
                         }
                     }
@@ -934,5 +970,69 @@ public class SistemaDeCombate {
                 
             }
         }
+    }
+    public static void gameOver()
+    {
+        System.out.println("                                                         /===-_---~~~~~~~~~------____");
+        System.out.println("                                                        |===-~___                _,-'");
+        System.out.println("                         -==\\\\                         `//~\\\\   ~~~~`---.___.-~~");
+        System.out.println("                     ______-==|                         | |  \\\\           _-~`");
+        System.out.println("               __--~~~  ,-/-==\\\\                        | |   `\\        ,'");
+        System.out.println("            _-~       /'    |  \\\\                      / /      \\      /");
+        System.out.println("          .'        /       |   \\\\                   /' /        \\   /'");
+        System.out.println("         /  ____  /         |    \\`\\.__/-~~ ~ \\ _ _/'  /          \\/'");
+        System.out.println("        /-'~    ~~~~~---__  |     ~-/~         ( )   /'        _--~`");
+        System.out.println("                          \\_|      /        _)   ;  ),   __--~~");
+        System.out.println("                            '~~--_/      _-~/-  / \\   '-~ \\");
+        System.out.println("                           {\\__--_/}    / \\\\_&gt;- )&lt;__\\      \\");
+        System.out.println("                           /'   (_/  _-~  | |__&gt;--&lt;__|      |");
+        System.out.println("                          |0  0 _/) )-~     | |__&gt;--&lt;__|     |");
+        System.out.println("                          / /~ ,_/       / /__&gt;---&lt;__/      |");
+        System.out.println("                         o o _//        /-~_&gt;---&lt;__-~      /");
+        System.out.println("                         (^(~          /~_&gt;---&lt;__-      _-~");
+        System.out.println("                        ,/|");
+        System.out.println("                     ,//('( ");
+        System.out.println("                    ( ( '))");
+        System.out.println("                 `-)) )) ( ");
+        System.out.println("                ,/,'//( ( ");
+        System.out.println("              ,( ( ((, ))");
+        System.out.println("            `~/  )` ) ,/|");
+        System.out.println("          ._-~//( )/ )) `");
+        System.out.println("           ;'( ')/ ,)(  ");
+        System.out.println("          ' ') '( (/");
+        System.out.println("            '   '  `");
+        System.out.println("~         ~~          __");
+        System.out.println("       _T      .,,.    ~--~ ^^");
+        System.out.println(" ^^   // \\                    ~");
+        System.out.println("      ][O]    ^^      ,-~ ~");
+        System.out.println("   /''-I_I         _II____");
+        System.out.println("__/_  /   \\ ______/ ''   /'\\_,__");
+        System.out.println("  | II--'''' \\,--:--..,_/,.-{ },");
+        System.out.println("; '/__\\,.--';|   |[] .-.| O{ _ }");
+        System.out.println(":' |  | []  -|   ''--:.;[,.'\\,/");
+        System.out.println("'  |[]|,.--'' '',   ''-,.    |");
+        System.out.println("  ..    ..-''    ;       ''. '");
+    }
+    public static void victory()
+    {
+        System.out.println("                                   .''.");
+        System.out.println("       .''.      .        *''*    :_\\/_:     .");
+        System.out.println("      :_\\/_:   _\\(/_  .:.*_\\/_*   : /\\ :  .'.:.'.");
+        System.out.println("  .''.: /\\ :    /)\\   ':'* /\\ *  : '..'.  -=:o:=-");
+        System.out.println(" :_\\/_:'.:::.  | ' *''*    * '.\\'/.'_\\(/_'.':'.'");
+        System.out.println(" : /\\ : :::::  =  *_\\/_*     -= o =- /)\\    '  *");
+        System.out.println("  '..'  ':::' === * /\\ *     .'/.\\'.  ' .");
+        System.out.println("      *        |   *..*         :");
+        System.out.println("      ~         ~~          __");
+        System.out.println("             _T      .,,.    ~--~ ^^");
+        System.out.println("       ^^   // \\                    ~");
+        System.out.println("            ][O]    ^^      ,-~ ~");
+        System.out.println("         /''-I_I         _II____");
+        System.out.println("      __/_  /   \\ ______/ ''   /'\\_,__");
+        System.out.println("        | II--'''' \\,--:--..,_/,.-{ },");
+        System.out.println("      ; '/__\\,.--';|   |[] .-.| O{ _ }");
+        System.out.println("      :' |  | []  -|   ''--:.;[,.'\\,/");
+        System.out.println("      '  |[]|,.--'' '',   ''-,.    |");
+        System.out.println("        ..    ..-''    ;       ''. '");
     }
 }
