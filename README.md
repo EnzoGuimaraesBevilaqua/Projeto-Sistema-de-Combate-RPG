@@ -27,7 +27,7 @@ O personagem do jogo contém os seguintes atributos:
 
 ## ASCII ART
 
-### Foi utilizado uma ASCII ART em nosso jogo. Créditos: Tua Xiong
+### Foram utilizadas ASCII ARTs em nosso jogo. Créditos: Tua Xiong (Dragao vs Cavaleiro), Steven Maddison (Small Village).
 
 ## Participantes
 
