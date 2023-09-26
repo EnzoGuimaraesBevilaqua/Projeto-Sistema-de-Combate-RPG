@@ -260,7 +260,7 @@ public class SistemaDeCombate {
             {
                 System.out.println("\nMecanicas");
                 System.out.println("Armas Pesadas = K + d12 + 1,5*For.");
-                System.out.println("Armas Leves = K + d6 + d6 + d4 + Des.");
+                System.out.println("Armas Leves = K + d8 + d8 + d6 + Des.");
                 System.out.println("Armaduras = K + 1,5*Cons.");
                 System.out.println("Poções = d6 + d6 + d6");
                 System.out.println("\nArmas");
@@ -269,7 +269,7 @@ public class SistemaDeCombate {
                 System.out.println(arma3.getNomeDaArma() + ": K = " + arma3.getConstanteDeDano());
                 System.out.println(arma4.getNomeDaArma() + ": K = " + arma4.getConstanteDeDano());
                 System.out.println(arma5.getNomeDaArma() + ": K = " + arma5.getConstanteDeDano() + " Habilidade especial: Frostbyte (causa dano adicional após atacar quatro vezes (+7) e diminui o dano do oponente por um turno (-15))");
-                System.out.println(arma6.getNomeDaArma() + ": K = " + arma6.getConstanteDeDano() + " Habilidade especial: Sangramento (causa dano adicional após atacar tres vezes (+10)");
+                System.out.println(arma6.getNomeDaArma() + ": K = " + arma6.getConstanteDeDano() + " Habilidade especial: Sangramento (causa dano adicional após atacar tres vezes (+10))");
                 System.out.println("\nArmaduras");
                 System.out.println(armadura2.getNomeDaArmadura() + ": K = " + (int) armadura2.getConstanteDeDefesa());
                 System.out.println(armadura3.getNomeDaArmadura() + ": K = " + (int) armadura3.getConstanteDeDefesa());
