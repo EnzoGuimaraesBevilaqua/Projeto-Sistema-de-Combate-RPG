@@ -5,21 +5,15 @@ Um sistema de combate no estilo RPG em Java. O jogo é um text adventure que con
 O personagem do jogo contém os seguintes atributos:
 ## Status Básicos:
   ### o Nome;
-  ### o P.V. (Ponto de Vida);
+  ### o P.V. (Ponto de Vida) = d6 + d6 + d6 + Cons.;;
 ## Atributos:
   ### o Força;
   ### o Constituição;
   ### o Agilidade;
   ### o Destreza;
 ## Equipamentos:
-  ### o Arma;
-  ### o Armadura.
-
-## Status Básicos:
-  ### o P.V. = d6 + d6 + d6 + Cons.;
-# Equipamentos:
   ### o Arma Pesada = K + d12 + 1,5*For.;
-  ### o Arma Leve = K + d6 + d6 + d4 + Des.;
+  ### o Arma Leve = K + d8 + d8 + d6 + Des.;
   ### o Armadura = K + 1,5*Cons.;
   ### o Poções = d6 + d6 + d6;
 
