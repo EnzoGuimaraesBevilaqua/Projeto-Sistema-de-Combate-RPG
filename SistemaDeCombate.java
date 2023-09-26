@@ -125,10 +125,10 @@ public class SistemaDeCombate {
         armadura4.setConstanteDeDefesa(5);
         
         armadura5.setNomeDaArmadura("Armadura Matadora de Dragao");
-        armadura5.setConstanteDeDefesa(8);
+        armadura5.setConstanteDeDefesa(10);
         
         armadura6.setNomeDaArmadura("Armadura de Berserk");
-        armadura6.setConstanteDeDefesa(12);
+        armadura6.setConstanteDeDefesa(18);
         
         while(true)
         {
@@ -268,14 +268,14 @@ public class SistemaDeCombate {
                 System.out.println(arma2.getNomeDaArma() + ": K = " + arma2.getConstanteDeDano());
                 System.out.println(arma3.getNomeDaArma() + ": K = " + arma3.getConstanteDeDano());
                 System.out.println(arma4.getNomeDaArma() + ": K = " + arma4.getConstanteDeDano());
-                System.out.println(arma5.getNomeDaArma() + ": K = " + arma5.getConstanteDeDano() + " Habilidade especial: Frostbyte (causa dano adicional após atacar quatro vezes (+7) e diminui o dano do oponente por um turno (-15)");
+                System.out.println(arma5.getNomeDaArma() + ": K = " + arma5.getConstanteDeDano() + " Habilidade especial: Frostbyte (causa dano adicional após atacar quatro vezes (+7) e diminui o dano do oponente por um turno (-15))");
                 System.out.println(arma6.getNomeDaArma() + ": K = " + arma6.getConstanteDeDano() + " Habilidade especial: Sangramento (causa dano adicional após atacar tres vezes (+10)");
                 System.out.println("\nArmaduras");
                 System.out.println(armadura2.getNomeDaArmadura() + ": K = " + (int) armadura2.getConstanteDeDefesa());
                 System.out.println(armadura3.getNomeDaArmadura() + ": K = " + (int) armadura3.getConstanteDeDefesa());
                 System.out.println(armadura4.getNomeDaArmadura() + ": K = " + (int) armadura4.getConstanteDeDefesa() + " Habilidade especial: 40% de chance de stunar quem o ataca");
-                System.out.println(armadura5.getNomeDaArmadura() + ": K = " + (int) armadura5.getConstanteDeDefesa() + " Nerf de Agilidade: -1 Habilidade especial: Concede resistencia aos ataques de dragoes (-5)");
-                System.out.println(armadura6.getNomeDaArmadura() + ": K = " + (int) armadura6.getConstanteDeDefesa() + " Nerf de Agilidade: -2");
+                System.out.println(armadura5.getNomeDaArmadura() + ": K = " + (int) armadura5.getConstanteDeDefesa() + " Habilidade especial: Concede resistencia aos ataques de dragoes (-5) Nerfs : -1 de agilidade e fica fadigado a cada 5 turnos");
+                System.out.println(armadura6.getNomeDaArmadura() + ": K = " + (int) armadura6.getConstanteDeDefesa() + " Nerfs: -4 de agilidade e perde 2 de vida a cada turno");
                 System.out.println("\nVoltar ao menu (1)");
                 confirmacao = input.nextInt();
             }
@@ -316,6 +316,7 @@ public class SistemaDeCombate {
         boolean adversario_stun = false;
         int sangramento = 0;
         int frostbyte = 0;
+        int fadiga = 0;
         boolean adversario_frostbyte = false;
         
         while(true) //while do combate
@@ -349,7 +350,17 @@ public class SistemaDeCombate {
             System.out.println("\n1- Atacar  2- Defender  3- Usar pocao");
             
             escolhaDeAcaoDoJogador = input.nextInt();
-            
+            if(armadura.getNomeDaArmadura() == "Armadura de Berserk")
+            {   
+                if(jogador.getPontosDeVidaDoJogador() > 2)
+                {
+                    jogador.setPontosDeVidaDoJogador(jogador.getPontosDeVidaDoJogador() - 2);
+                }
+            }
+            else if(armadura.getNomeDaArmadura() == "Armadura Matadora de Dragao")
+            {
+                fadiga++;
+            }
             if(escolhaDeAcaoDoJogador == 4)
             {
                 System.out.println("\nCheat de aumentar vida\n");
@@ -375,93 +386,100 @@ public class SistemaDeCombate {
             if(jogador.getAgilidadeDoJogador() > adversarioGenerico.getAgilidadeDoAdversario())
             {
                 armadura.setValorDeArmadura(armaduraMaximaDoJogador);
-                if(escolhaDeAcaoDoJogador == 1)
-                {   
-                    System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu atacar!");
-                    if(arma.getCategoriaDaArma() == 1)
-                    {
-                        dano = (int) (arma.getConstanteDeDano() + gerador.nextInt(8) + 1 + gerador.nextInt(8) + 1 + gerador.nextInt(6) + 1 + jogador.getDestrezaDoJogador() - adversarioGenerico.getDefesaDoAdversario());
-                        
-                        if(arma.getNomeDaArma() == "Rivers of Blood (Leve)")
-                        {
-                            sangramento++;
-                            if(sangramento >= 3)
-                            {
-                                dano += 10;
-                                sangramento = 0;
-                                System.out.println("O adversario sofreu +10 de dano por Sangramento!");
-                            }
-                        }    
-                    }
-                    else
-                    {
-                        dano = (int) (arma.getConstanteDeDano() + gerador.nextInt(12) + 1 + 1.5*jogador.getForcaDoJogador() - adversarioGenerico.getDefesaDoAdversario());
-                        if(arma.getNomeDaArma() == "Moonlight Greatsword (Pesada)")
-                        {
-                            frostbyte++;
-                            if(frostbyte >= 4)
-                            {
-                                dano += 7;
-                                frostbyte = 0;
-                                adversario_frostbyte = true;
-                                System.out.println("O adversario sofreu +7 de dano por frostbyte e seu dano foi reduzido para o proximo turno!");
-                            }
-                        }
-                    }
-                    if(dano <= 0)
-                    {
-                        dano = 1;
-                    }
-                    vida = adversarioGenerico.getPontosDeVidaDoAdversario();
-                            
-                    vida -= dano;
-                    adversarioGenerico.setPontosDeVidaDoAdversario(vida);
-                    System.out.println("Dano: " + dano);
-                            
-                    if(adversarioGenerico.getPontosDeVidaDoAdversario() <= 0)
-                    {
-                        System.out.println("\n" + jogador.getNomeDoJogador() + " venceu!!!\n");
-                        return 1;
-                    }
-                }
-                else if(escolhaDeAcaoDoJogador == 2)
+                if(fadiga > 4)
                 {
-                    System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu defender! \nSua Defesa dobrou!");
-                    armadura.setValorDeArmadura(2*armadura.getValorDeArmadura());
+                    fadiga = 0;
+                    System.out.println(jogador.getNomeDoJogador() + " esta afetado pela fadiga e nao pode se mover nesse turno!");
                 }
-                else if(escolhaDeAcaoDoJogador == 3)
+                else
                 {
-                    if(pocoesDoJogador.getQuantidadeDePocoes() <= 0)
-                    {
-                        System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu usar uma pocao, mas elas ja acabaram...");
-                    }
-                    else
-                    {    
-                        System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu usar uma pocao!");
-                        
-                        vida = jogador.getPontosDeVidaDoJogador();
-                        cura = pocoesDoJogador.getValorDeCura();
-                        pocao = pocoesDoJogador.getQuantidadeDePocoes();
-                              
-                        vida += cura;
-                        pocao--;
-                              
-                        pocoesDoJogador.setQuantidadeDePocoes(pocao);
-                        
-                        if(vida > jogador.getVidaMaximaDoJogador())
+                    if(escolhaDeAcaoDoJogador == 1)
+                    {   
+                        System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu atacar!");
+                        if(arma.getCategoriaDaArma() == 1)
                         {
-                            cura = jogador.getVidaMaximaDoJogador() - jogador.getPontosDeVidaDoJogador();
-                            System.out.println("Cura: " + cura);
-                            jogador.setPontosDeVidaDoJogador(jogador.getVidaMaximaDoJogador());
+                            dano = (int) (arma.getConstanteDeDano() + gerador.nextInt(8) + 1 + gerador.nextInt(8) + 1 + gerador.nextInt(6) + 1 + jogador.getDestrezaDoJogador() - adversarioGenerico.getDefesaDoAdversario());
+
+                            if(arma.getNomeDaArma() == "Rivers of Blood (Leve)")
+                            {
+                                sangramento++;
+                                if(sangramento >= 3)
+                                {
+                                    dano += 10;
+                                    sangramento = 0;
+                                    System.out.println("O adversario sofreu +10 de dano por Sangramento!");
+                                }
+                            }    
                         }
                         else
                         {
-                            System.out.println("Cura: " + cura);
-                            jogador.setPontosDeVidaDoJogador(vida);
+                            dano = (int) (arma.getConstanteDeDano() + gerador.nextInt(12) + 1 + 1.5*jogador.getForcaDoJogador() - adversarioGenerico.getDefesaDoAdversario());
+                            if(arma.getNomeDaArma() == "Moonlight Greatsword (Pesada)")
+                            {
+                                frostbyte++;
+                                if(frostbyte >= 4)
+                                {
+                                    dano += 7;
+                                    frostbyte = 0;
+                                    adversario_frostbyte = true;
+                                    System.out.println("O adversario sofreu +7 de dano por frostbyte e seu dano foi reduzido para o proximo turno!");
+                                }
+                            }
+                        }
+                        if(dano <= 0)
+                        {
+                            dano = 1;
+                        }
+                        vida = adversarioGenerico.getPontosDeVidaDoAdversario();
+
+                        vida -= dano;
+                        adversarioGenerico.setPontosDeVidaDoAdversario(vida);
+                        System.out.println("Dano: " + dano);
+
+                        if(adversarioGenerico.getPontosDeVidaDoAdversario() <= 0)
+                        {
+                            System.out.println("\n" + jogador.getNomeDoJogador() + " venceu!!!\n");
+                            return 1;
                         }
                     }
-                }
-                        
+                    else if(escolhaDeAcaoDoJogador == 2)
+                    {
+                        System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu defender! \nSua Defesa dobrou!");
+                        armadura.setValorDeArmadura(2*armadura.getValorDeArmadura());
+                    }
+                    else if(escolhaDeAcaoDoJogador == 3)
+                    {
+                        if(pocoesDoJogador.getQuantidadeDePocoes() <= 0)
+                        {
+                            System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu usar uma pocao, mas elas ja acabaram...");
+                        }
+                        else
+                        {    
+                            System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu usar uma pocao!");
+
+                            vida = jogador.getPontosDeVidaDoJogador();
+                            cura = pocoesDoJogador.getValorDeCura();
+                            pocao = pocoesDoJogador.getQuantidadeDePocoes();
+
+                            vida += cura;
+                            pocao--;
+
+                            pocoesDoJogador.setQuantidadeDePocoes(pocao);
+
+                            if(vida > jogador.getVidaMaximaDoJogador())
+                            {
+                                cura = jogador.getVidaMaximaDoJogador() - jogador.getPontosDeVidaDoJogador();
+                                System.out.println("Cura: " + cura);
+                                jogador.setPontosDeVidaDoJogador(jogador.getVidaMaximaDoJogador());
+                            }
+                            else
+                            {
+                                System.out.println("Cura: " + cura);
+                                jogador.setPontosDeVidaDoJogador(vida);
+                            }
+                        }
+                    }
+                }   
                 escolhaDeAcaoDoAdversario = gerador.nextInt(6);
                        
                 adversarioGenerico.setDefesaDoAdversario(defesaMaximaDoAdversario);
@@ -665,88 +683,96 @@ public class SistemaDeCombate {
                 }//if-else stun
                 
                 armadura.setValorDeArmadura(armaduraMaximaDoJogador);
-                if(escolhaDeAcaoDoJogador == 1)
+                if(fadiga > 4)
                 {
-                    System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu atacar!");
-                    if(arma.getCategoriaDaArma() == 1)
-                    {
-                        dano = (int) (arma.getConstanteDeDano() + gerador.nextInt(6) + 1 + gerador.nextInt(6) + 1 + gerador.nextInt(4) + 1 + jogador.getDestrezaDoJogador() - adversarioGenerico.getDefesaDoAdversario());
-                        if(arma.getNomeDaArma() == "Rivers of Blood (Leve)")
-                        {
-                            sangramento++;
-                            if(sangramento >= 3)
-                            {
-                                dano += 10;
-                                sangramento = 0;
-                                System.out.println("O adversario sofreu +10 de dano por Sangramento!");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        dano = (int) (arma.getConstanteDeDano() + gerador.nextInt(12) + 1 + 1.5*jogador.getForcaDoJogador() - adversarioGenerico.getDefesaDoAdversario());
-                        if(arma.getNomeDaArma() == "Moonlight Greatsword (Pesada)")
-                        {
-                            frostbyte++;
-                            if(frostbyte >= 4)
-                            {
-                                dano += 7;
-                                frostbyte = 0;
-                                adversario_frostbyte = true;
-                                System.out.println("O adversario sofreu +7 de dano por frostbyte e seu dano foi reduzido para o proximo turno!");
-                            }
-                        }
-                    }
-                    if(dano <= 0)
-                    {
-                        dano = 1;
-                    }
-                    vida = adversarioGenerico.getPontosDeVidaDoAdversario();
-                            
-                    vida -= dano;
-                    adversarioGenerico.setPontosDeVidaDoAdversario(vida);
-                    System.out.println("Dano: " + dano);
-                            
-                    if(adversarioGenerico.getPontosDeVidaDoAdversario() <= 0)
-                    {
-                        System.out.println("\n" + jogador.getNomeDoJogador() + " venceu!!!\n");
-                        return 1;
-                    }
+                    fadiga = 0;
+                    System.out.println(jogador.getNomeDoJogador() + " esta afetado pela fadiga e nao pode se mover nesse turno!");
                 }
-                else if(escolhaDeAcaoDoJogador == 2)
+                else
                 {
-                    System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu defender! \nSua Defesa dobrou!");
-                    armadura.setValorDeArmadura(2*armadura.getValorDeArmadura());
-                }
-                else if(escolhaDeAcaoDoJogador == 3)
-                {   
-                    if(pocoesDoJogador.getQuantidadeDePocoes() <= 0)
+                    if(escolhaDeAcaoDoJogador == 1)
                     {
-                        System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu usar uma pocao, mas elas ja acabaram...");
-                    }
-                    else
-                    {    
-                        System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu usar uma pocao!");
-                        
-                        vida = jogador.getPontosDeVidaDoJogador();
-                        cura = pocoesDoJogador.getValorDeCura();
-                        pocao = pocoesDoJogador.getQuantidadeDePocoes();
-                              
-                        vida += cura;
-                        pocao--;
-                              
-                        pocoesDoJogador.setQuantidadeDePocoes(pocao);
-                        
-                        if(vida > jogador.getVidaMaximaDoJogador())
+                        System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu atacar!");
+                        if(arma.getCategoriaDaArma() == 1)
                         {
-                            cura = jogador.getVidaMaximaDoJogador() - jogador.getPontosDeVidaDoJogador();
-                            System.out.println("Cura: " + cura);
-                            jogador.setPontosDeVidaDoJogador(jogador.getVidaMaximaDoJogador());
+                            dano = (int) (arma.getConstanteDeDano() + gerador.nextInt(6) + 1 + gerador.nextInt(6) + 1 + gerador.nextInt(4) + 1 + jogador.getDestrezaDoJogador() - adversarioGenerico.getDefesaDoAdversario());
+                            if(arma.getNomeDaArma() == "Rivers of Blood (Leve)")
+                            {
+                                sangramento++;
+                                if(sangramento >= 3)
+                                {
+                                    dano += 10;
+                                    sangramento = 0;
+                                    System.out.println("O adversario sofreu +10 de dano por Sangramento!");
+                                }
+                            }
                         }
                         else
                         {
-                            System.out.println("Cura: " + cura);
-                            jogador.setPontosDeVidaDoJogador(vida);
+                            dano = (int) (arma.getConstanteDeDano() + gerador.nextInt(12) + 1 + 1.5*jogador.getForcaDoJogador() - adversarioGenerico.getDefesaDoAdversario());
+                            if(arma.getNomeDaArma() == "Moonlight Greatsword (Pesada)")
+                            {
+                                frostbyte++;
+                                if(frostbyte >= 4)
+                                {
+                                    dano += 7;
+                                    frostbyte = 0;
+                                    adversario_frostbyte = true;
+                                    System.out.println("O adversario sofreu +7 de dano por frostbyte e seu dano foi reduzido para o proximo turno!");
+                                }
+                            }
+                        }
+                        if(dano <= 0)
+                        {
+                            dano = 1;
+                        }
+                        vida = adversarioGenerico.getPontosDeVidaDoAdversario();
+
+                        vida -= dano;
+                        adversarioGenerico.setPontosDeVidaDoAdversario(vida);
+                        System.out.println("Dano: " + dano);
+
+                        if(adversarioGenerico.getPontosDeVidaDoAdversario() <= 0)
+                        {
+                            System.out.println("\n" + jogador.getNomeDoJogador() + " venceu!!!\n");
+                            return 1;
+                        }
+                    }
+                    else if(escolhaDeAcaoDoJogador == 2)
+                    {
+                        System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu defender! \nSua Defesa dobrou!");
+                        armadura.setValorDeArmadura(2*armadura.getValorDeArmadura());
+                    }
+                    else if(escolhaDeAcaoDoJogador == 3)
+                    {   
+                        if(pocoesDoJogador.getQuantidadeDePocoes() <= 0)
+                        {
+                            System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu usar uma pocao, mas elas ja acabaram...");
+                        }
+                        else
+                        {    
+                            System.out.println("\n" + jogador.getNomeDoJogador() + " escolheu usar uma pocao!");
+
+                            vida = jogador.getPontosDeVidaDoJogador();
+                            cura = pocoesDoJogador.getValorDeCura();
+                            pocao = pocoesDoJogador.getQuantidadeDePocoes();
+
+                            vida += cura;
+                            pocao--;
+
+                            pocoesDoJogador.setQuantidadeDePocoes(pocao);
+
+                            if(vida > jogador.getVidaMaximaDoJogador())
+                            {
+                                cura = jogador.getVidaMaximaDoJogador() - jogador.getPontosDeVidaDoJogador();
+                                System.out.println("Cura: " + cura);
+                                jogador.setPontosDeVidaDoJogador(jogador.getVidaMaximaDoJogador());
+                            }
+                            else
+                            {
+                                System.out.println("Cura: " + cura);
+                                jogador.setPontosDeVidaDoJogador(vida);
+                            }
                         }
                     }
                 }
@@ -942,7 +968,7 @@ public class SistemaDeCombate {
                 
                 if(armaduraDoJogador.getNomeDaArmadura() == "Armadura Matadora de Dragao")
                 {
-                    System.out.println("\nBoa defesa, porem pesada (perdeu 1 de agilidade)");
+                    System.out.println("\nBoa defesa, porem pesada (perdeu 1 de agilidade) e fica fadigado a cada 5 turnos");
                      
                     jogador.setAgilidadeDoJogador(jogador.getAgilidadeDoJogador() - 1);
                 }
@@ -957,9 +983,9 @@ public class SistemaDeCombate {
                 
                 if(armaduraDoJogador.getNomeDaArmadura() == "Armadura de Berserk")
                 {
-                    System.out.println("\nOtima defesa, porem bem pesada (perdeu 2 de agilidade)");
+                    System.out.println("\nOtima defesa, porem bem pesada (perdeu 4 de agilidade) e perde 2 de vida a cada turno");
 
-                    jogador.setAgilidadeDoJogador(jogador.getAgilidadeDoJogador() - 2);
+                    jogador.setAgilidadeDoJogador(jogador.getAgilidadeDoJogador() - 4);
                 }
                 
                 armaduraDoJogador.setConstanteDeDefesa(armaduraGenerica3.getConstanteDeDefesa());
@@ -1015,7 +1041,7 @@ public class SistemaDeCombate {
     }
     public static void victory()
     {
-        System.out.println("                                   .''.");
+        System.out.println("\n                                   .''.");
         System.out.println("       .''.      .        *''*    :_\\/_:     .");
         System.out.println("      :_\\/_:   _\\(/_  .:.*_\\/_*   : /\\ :  .'.:.'.");
         System.out.println("  .''.: /\\ :    /)\\   ':'* /\\ *  : '..'.  -=:o:=-");
